@@ -1,0 +1,24 @@
+#logo {
+    width: 70px;
+    height: 70px;
+    float: left;
+    margin: 10px;
+}
+table {
+    background-color: black;
+}
+table tr:nth-child(2n){
+    background-color: white;
+}
+table tr:nth-child(2n-1){
+    background-color: #EEEEEE;
+}
+@media screen and (min-width: 768px) {
+    .nav {
+        background-color: white;
+        border: 1px solid black;
+    }
+    .f {
+        background-color: gainsboro;
+    }
+}

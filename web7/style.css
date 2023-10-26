@@ -16,7 +16,7 @@ table tr:nth-child(2n-1){
 .slider {
     width: 300px;
 }
-#pict {
+.pict {
     width: 300px;
     height: 300px;
     
@@ -32,7 +32,7 @@ table tr:nth-child(2n-1){
     .slider {
         width: 400px;
     }
-    #pict {
+    .pict {
         width: 100px;
         height: 100px;
         margin: 15px;

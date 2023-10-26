@@ -19,7 +19,6 @@ table tr:nth-child(2n-1){
 .pict {
     width: 300px;
     height: 300px;
-    
 }
 @media screen and (min-width: 768px) {
     .nav {
@@ -30,11 +29,11 @@ table tr:nth-child(2n-1){
         background-color: gainsboro;
     }
     .slider {
-        width: 400px;
+        width: 700px;
     }
     .pict {
-        width: 100px;
-        height: 100px;
-        margin: 15px;
+        width: 200px;
+        height: 200px;
+        margin: 0 15px 0 15px;
     }
 }

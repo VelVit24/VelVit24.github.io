@@ -1,0 +1,39 @@
+#logo {
+    width: 70px;
+    height: 70px;
+    float: left;
+    margin: 10px;
+}
+table {
+    background-color: black;
+}
+table tr:nth-child(2n){
+    background-color: white;
+}
+table tr:nth-child(2n-1){
+    background-color: #EEEEEE;
+}
+.slider {
+    width: 300px;
+}
+.pict {
+    width: 300px;
+    height: 300px;
+}
+@media screen and (min-width: 768px) {
+    .nav {
+        background-color: white;
+        border: 1px solid black;
+    }
+    .f {
+        background-color: gainsboro;
+    }
+    .slider {
+        width: 700px;
+    }
+    .pict {
+        width: 200px;
+        height: 200px;
+        margin: 0 15px 0 15px;
+    }
+}

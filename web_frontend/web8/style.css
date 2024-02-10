@@ -1,0 +1,76 @@
+#logo {
+    width: 70px;
+    height: 70px;
+    float: left;
+    margin: 10px;
+}
+table {
+    background-color: black;
+}
+table tr:nth-child(2n){
+    background-color: white;
+}
+table tr:nth-child(2n-1){
+    background-color: #EEEEEE;
+}
+.slider {
+    width: 300px;
+}
+.pict {
+    width: 300px;
+    height: 300px;
+}
+* {
+    box-sizing: border-box;
+}
+.fixed-overlay1 {
+    display: none;
+    position: fixed;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.fixed-overlay_modal1 {
+    text-align: center;
+    white-space: nowrap;
+}
+.fixed-overlay_modal1::after {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+    content: '';
+}
+.modal1 {
+    display: inline-block;
+    vertical-align: middle;
+}
+.modal_container1 {
+    margin: 50px;
+    padding: 20px;
+    min-height: 200px;
+    text-align: left;
+    white-space: normal;
+    background-color: #fff;
+    color: #000;
+}
+@media screen and (min-width: 768px) {
+    .nav {
+        background-color: white;
+        border: 1px solid black;
+    }
+    .f {
+        background-color: gainsboro;
+    }
+    .slider {
+        width: 700px;
+    }
+    .pict {
+        width: 200px;
+        height: 200px;
+        margin: 0 15px 0 15px;
+    }
+}

@@ -44,13 +44,13 @@ if ($errors) {
 
 $user = 'u67330'; // Заменить на ваш логин uXXXXX
 $pass = '3199779'; // Заменить на пароль, такой же, как от SSH
-$db = new PDO('mysql:host=u67330.kubsu-dev.ru;dbname=u67330', $user, $pass,
+$db = new PDO('mysql:host=localhost;dbname=u67330', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
 // Подготовленный запрос. Не именованные метки.
 try {
-  $stmt = $db->prepare("INSERT INTO application1 SET name = ?");
-  $stmt->execute([$_POST['fio']]);
+  $stmt = $db->prepare("INSERT INTO application1 SET name = ?, phone = ?, email = ?, birthday = ?, gender = ?, biography = ?");
+  $stmt->execute([$_POST['name'],$_POST['phone_number'],$_POST['email'],$_POST['birthday'],$_POST['biography']]);
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());

@@ -51,7 +51,7 @@ $db = new PDO('mysql:host=localhost;dbname=u67330', $user, $pass,
 try {
     $stmt = $db->prepare("INSERT INTO application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ?");
     $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography']]);
-    $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = PDO::lastInsertId, id_lang = ?");
+    $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = PDO::lastInsertId(), id_lang = ?");
     $stmt->execute([$_POST['languages']]);
 }
 catch(PDOException $e){

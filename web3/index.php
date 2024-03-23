@@ -51,10 +51,11 @@ $db = new PDO('mysql:host=localhost;dbname=u67330', $user, $pass,
 try {
     $stmt = $db->prepare("INSERT INTO application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ?");
     $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography']]);
-    print($db->lastInsertId());
     $li = $db->lastInsertId();
-    $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
-    $stmt->execute([$li, $_POST['languages']]);
+    foreach ($_POST['languages'] as $language) {
+        $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
+        $stmt->execute([$li, $language]);
+    }
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());

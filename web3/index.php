@@ -20,15 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['fio'])) {
-  print('Заполните имя.<br/>');
+if (empty($_POST['name'])) {
+  print('Заполните имя.<br/>'); 
   $errors = TRUE;
 }
 
-if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
-  print('Заполните год.<br/>');
-  $errors = TRUE;
-}
+//if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
+//  print('Заполните год.<br/>');
+//  $errors = TRUE;
+//}
 
 
 // *************
@@ -49,8 +49,10 @@ $db = new PDO('mysql:host=localhost;dbname=u67330', $user, $pass,
 
 // Подготовленный запрос. Не именованные метки.
 try {
-  $stmt = $db->prepare("INSERT INTO application1 SET name = ?, phone = ?, email = ?, birthday = ?, gender = ?, biography = ?");
-  $stmt->execute([$_POST['name'],$_POST['phone_number'],$_POST['email'],$_POST['birthday'],$_POST['biography']]);
+    $stmt = $db->prepare("INSERT INTO application1 SET name = ?, phone = ?, email = ?, birthday = ?, gender = ?, biography = ?");
+    $stmt->execute([$_POST['name'],$_POST['phone_number'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography']]);
+    $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = lastInsertId(), id_lang = ?");
+    $stmt->execute([$_POST['languages']]);
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());

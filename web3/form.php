@@ -16,7 +16,7 @@
         <input type="radio" name="gender" value="female">
     </label>
     <label>
-        <select multiple>
+        <select multiple name="languages">
             <option value="1">Pascal</option>
             <option value="2">C</option>
             <option value="3">C++</option>

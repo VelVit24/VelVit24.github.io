@@ -29,7 +29,7 @@ if (strlen($phone)!=11) {
     echo ('Неверный номер телефона.<br/>');
 }
 if (empty($_POST['email'])) {
-    echo ('Заполните E-mail.<br/>')
+    echo ('Заполните E-mail.<br/>');
 }
 if (empty($_POST['birthday']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
   print('Заполните год.<br/>');

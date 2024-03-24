@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // В суперглобальном массиве $_GET PHP хранит все параметры, переданные в текущем запросе через URL.
   if (!empty($_GET['save'])) {
     // Если есть параметр save, то выводим сообщение пользователю.
-    print('Спасибо, результаты сохранены.');
+    echo ('Спасибо, результаты сохранены.');
   }
   // Включаем содержимое файла form.php.
   include('form.php');
@@ -20,14 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['name']) || preg_match("[a-zA-Z]+\s",$_POST['name']) || strlen($_POST['name'])) {
-  print('Заполните имя.<br/>');
+if (empty($_POST['name']) || preg_match('/^[a-zA-ZА-Яа-яЁё ]+$/u',$_POST['name']) || strlen($_POST['name'])) {
+  echo ('Заполните имя.<br/>');
   $errors = TRUE;
 }
-//if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
-//  print('Заполните год.<br/>');
-//  $errors = TRUE;
-//}
+$phone = preg_replace('/\D/', '', $_POST['phone']);
+if (strlen($phone)!=11) {
+    echo ('Неверный номер телефона.<br/>');
+}
+if (empty($_POST['email'])) {
+    echo ('Заполните E-mail.<br/>')
+}
+if (empty($_POST['birthday']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
+  print('Заполните год.<br/>');
+  $errors = TRUE;
+}
 
 
 // *************
@@ -49,7 +56,7 @@ $db = new PDO('mysql:host=localhost;dbname=u67330', $user, $pass,
 // Подготовленный запрос. Не именованные метки.
 try {
     $stmt = $db->prepare("INSERT INTO application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ?");
-    $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography']]);
+    $stmt->execute([$_POST['name'],$phone,$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography']]);
     $li = $db->lastInsertId();
     foreach ($_POST['languages'] as $language) {
         $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
@@ -57,7 +64,7 @@ try {
     }
 }
 catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
+  echo ('Error : ' . $e->getMessage());
   exit();
 }
 

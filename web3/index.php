@@ -20,22 +20,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['name']) || preg_match('/^[a-zA-ZА-Яа-яЁё ]+$/u',$_POST['name']) || strlen($_POST['name'])) {
+if (empty($_POST['name'])) {
   echo ('Заполните имя.<br/>');
   $errors = TRUE;
 }
-$phone = preg_replace('/\D/', '', $_POST['phone']);
-if (strlen($phone)!=11) {
-    echo ('Неверный номер телефона.<br/>');
+elseif (!preg_match('/^[a-zA-ZА-Яа-яЁё ]+$/u',$_POST['name'])) {
+    echo 'Поле имени должно содержать только буквы и пробелы.<br/>';
+    $errors = TRUE;
+}
+elseif (strlen($_POST['name'])>=150) {
+    echo 'Поле имени должно содержать до 150 символов.<br/>';
+    $errors = TRUE;
+}
+if (empty($_POST['phone'])) {
+    echo ('Заполните телефон.<br/>');
+    $errors = TRUE;
+}
+else {
+    $phone = preg_replace('/\D/', '', $_POST['phone']);
+    if (strlen($phone) != 11) {
+        echo('Неверный номер телефона.<br/>');
+        $errors = TRUE;
+    }
 }
 if (empty($_POST['email'])) {
     echo ('Заполните E-mail.<br/>');
+    $errors = TRUE;
 }
-if (empty($_POST['birthday']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
-  print('Заполните год.<br/>');
-  $errors = TRUE;
+elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    echo 'Неверный e-mail.<br/>';
+    $errors = TRUE;
 }
-
+if (empty($_POST['birthday'])) {
+    echo ('Заполните дату рождения.<br/>');
+    $errors = TRUE;
+}
+$fl = true;
+foreach ($_POST['languages'] as $language) {
+    if (!empty($language)) $fl = false;
+}
+if ($fl) {
+    echo ('Выберите хотя бы 1 язык программирования.<br/>');
+    $errors = TRUE;
+}
+if (empty($_POST['biography'])) {
+    echo ('Заполните биографию.<br/>');
+    $errors = TRUE;
+}
+/*
+elseif (!is_numeric($_POST['birthday']) || !preg_match('/^\d+$/', $_POST['birthday'])) {
+    print('Неверная дата.<br/>');
+    $errors = TRUE;
+}
+*/
 
 // *************
 // Тут необходимо проверить правильность заполнения всех остальных полей.

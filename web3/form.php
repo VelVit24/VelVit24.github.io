@@ -55,6 +55,7 @@
             </label><br/>
             <input type="submit" value="Сохранить">
         </form>
+        <?php echo $message?>
     </div>
 </div>
 </body>

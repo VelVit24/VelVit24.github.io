@@ -6,6 +6,7 @@ header('Content-Type: text/html; charset=UTF-8');
 // В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $message = '';
   // В суперглобальном массиве $_GET PHP хранит все параметры, переданные в текущем запросе через URL.
   if (!empty($_GET['save'])) {
     // Если есть параметр save, то выводим сообщение пользователю.
@@ -20,39 +21,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
+$message = '';
 if (empty($_POST['name'])) {
-  echo ('Заполните имя.<br/>');
+    $message += ('Заполните имя.<br/>');
   $errors = TRUE;
 }
 elseif (!preg_match('/^[a-zA-ZА-Яа-яЁё ]+$/u',$_POST['name'])) {
-    echo 'Поле имени должно содержать только буквы и пробелы.<br/>';
+    $message += 'Поле имени должно содержать только буквы и пробелы.<br/>';
     $errors = TRUE;
 }
 elseif (strlen($_POST['name'])>=150) {
-    echo 'Поле имени должно содержать до 150 символов.<br/>';
+    $message += 'Поле имени должно содержать до 150 символов.<br/>';
     $errors = TRUE;
 }
 if (empty($_POST['phone'])) {
-    echo ('Заполните телефон.<br/>');
+    $message += ('Заполните телефон.<br/>');
     $errors = TRUE;
 }
 else {
     $phone = preg_replace('/\D/', '', $_POST['phone']);
     if (strlen($phone) != 11) {
-        echo('Неверный номер телефона.<br/>');
+        $message +=('Неверный номер телефона.<br/>');
         $errors = TRUE;
     }
 }
 if (empty($_POST['email'])) {
-    echo ('Заполните E-mail.<br/>');
+    $message += ('Заполните E-mail.<br/>');
     $errors = TRUE;
 }
 elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    echo 'Неверный e-mail.<br/>';
+    $message += 'Неверный e-mail.<br/>';
     $errors = TRUE;
 }
 if (empty($_POST['birthday'])) {
-    echo ('Заполните дату рождения.<br/>');
+    $message += ('Заполните дату рождения.<br/>');
     $errors = TRUE;
 }
 $fl = true;
@@ -60,11 +62,11 @@ foreach ($_POST['languages'] as $language) {
     if (!empty($language)) $fl = false;
 }
 if ($fl) {
-    echo ('Выберите хотя бы 1 язык программирования.<br/>');
+    $message += ('Выберите хотя бы 1 язык программирования.<br/>');
     $errors = TRUE;
 }
 if (empty($_POST['biography'])) {
-    echo ('Заполните биографию.<br/>');
+    $message += ('Заполните биографию.<br/>');
     $errors = TRUE;
 }
 /*
@@ -101,7 +103,7 @@ try {
     }
 }
 catch(PDOException $e){
-  echo ('Error : ' . $e->getMessage());
+    $message += ('Error : ' . $e->getMessage());
   exit();
 }
 

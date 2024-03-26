@@ -57,8 +57,7 @@ if (empty($_POST['birthday'])) {
     $errors = TRUE;
 }
 $fl = true;
-if (empty($_POST['languages'])) $fl = false;
-else foreach ($_POST['languages'] as $language) {
+if (!empty($_POST['languages'])) foreach ($_POST['languages'] as $language) {
     if (!empty($language)) $fl = false;
 }
 if ($fl) {

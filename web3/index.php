@@ -23,38 +23,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 $errors = FALSE;
 $message = '';
 if (empty($_POST['name'])) {
-    $message += ('Заполните имя.<br/>');
+    $message = $message . ('Заполните имя.<br/>');
   $errors = TRUE;
 }
 elseif (!preg_match('/^[a-zA-ZА-Яа-яЁё ]+$/u',$_POST['name'])) {
-    $message += 'Поле имени должно содержать только буквы и пробелы.<br/>';
+    $message = $message . 'Поле имени должно содержать только буквы и пробелы.<br/>';
     $errors = TRUE;
 }
 elseif (strlen($_POST['name'])>=150) {
-    $message += 'Поле имени должно содержать до 150 символов.<br/>';
+    $message = $message . 'Поле имени должно содержать до 150 символов.<br/>';
     $errors = TRUE;
 }
 if (empty($_POST['phone'])) {
-    $message += ('Заполните телефон.<br/>');
+    $message = $message . ('Заполните телефон.<br/>');
     $errors = TRUE;
 }
 else {
     $phone = preg_replace('/\D/', '', $_POST['phone']);
     if (strlen($phone) != 11) {
-        $message +=('Неверный номер телефона.<br/>');
+        $message = $message . ('Неверный номер телефона.<br/>');
         $errors = TRUE;
     }
 }
 if (empty($_POST['email'])) {
-    $message += ('Заполните E-mail.<br/>');
+    $message = $message . ('Заполните E-mail.<br/>');
     $errors = TRUE;
 }
 elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    $message += 'Неверный e-mail.<br/>';
+    $message = $message . 'Неверный e-mail.<br/>';
     $errors = TRUE;
 }
 if (empty($_POST['birthday'])) {
-    $message += ('Заполните дату рождения.<br/>');
+    $message = $message . ('Заполните дату рождения.<br/>');
     $errors = TRUE;
 }
 $fl = true;
@@ -62,11 +62,11 @@ foreach ($_POST['languages'] as $language) {
     if (!empty($language)) $fl = false;
 }
 if ($fl) {
-    $message += ('Выберите хотя бы 1 язык программирования.<br/>');
+    $message = $message . ('Выберите хотя бы 1 язык программирования.<br/>');
     $errors = TRUE;
 }
 if (empty($_POST['biography'])) {
-    $message += ('Заполните биографию.<br/>');
+    $message = $message . ('Заполните биографию.<br/>');
     $errors = TRUE;
 }
 /*
@@ -103,7 +103,7 @@ try {
     }
 }
 catch(PDOException $e){
-    $message += ('Error : ' . $e->getMessage());
+    $message = $message . ('Error : ' . $e->getMessage());
   exit();
 }
 

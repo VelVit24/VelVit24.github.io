@@ -21,40 +21,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-$message = '';
 if (empty($_POST['name'])) {
-    $message = $message . ('Заполните имя.<br/>');
+  echo ('Заполните имя.<br/>');
   $errors = TRUE;
 }
 elseif (!preg_match('/^[a-zA-ZА-Яа-яЁё ]+$/u',$_POST['name'])) {
-    $message = $message . 'Поле имени должно содержать только буквы и пробелы.<br/>';
+    echo 'Поле имени должно содержать только буквы и пробелы.<br/>';
     $errors = TRUE;
 }
 elseif (strlen($_POST['name'])>=150) {
-    $message = $message . 'Поле имени должно содержать до 150 символов.<br/>';
+    echo 'Поле имени должно содержать до 150 символов.<br/>';
     $errors = TRUE;
 }
 if (empty($_POST['phone'])) {
-    $message = $message . ('Заполните телефон.<br/>');
+    echo ('Заполните телефон.<br/>');
     $errors = TRUE;
 }
 else {
     $phone = preg_replace('/\D/', '', $_POST['phone']);
     if (strlen($phone) != 11) {
-        $message = $message . ('Неверный номер телефона.<br/>');
+        echo('Неверный номер телефона.<br/>');
         $errors = TRUE;
     }
 }
 if (empty($_POST['email'])) {
-    $message = $message . ('Заполните E-mail.<br/>');
+    echo ('Заполните E-mail.<br/>');
     $errors = TRUE;
 }
 elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    $message = $message . 'Неверный e-mail.<br/>';
+    echo 'Неверный e-mail.<br/>';
     $errors = TRUE;
 }
 if (empty($_POST['birthday'])) {
-    $message = $message . ('Заполните дату рождения.<br/>');
+    echo ('Заполните дату рождения.<br/>');
     $errors = TRUE;
 }
 $fl = true;
@@ -62,11 +61,11 @@ foreach ($_POST['languages'] as $language) {
     if (!empty($language)) $fl = false;
 }
 if ($fl) {
-    $message = $message . ('Выберите хотя бы 1 язык программирования.<br/>');
+    echo ('Выберите хотя бы 1 язык программирования.<br/>');
     $errors = TRUE;
 }
 if (empty($_POST['biography'])) {
-    $message = $message . ('Заполните биографию.<br/>');
+    echo ('Заполните биографию.<br/>');
     $errors = TRUE;
 }
 /*
@@ -103,7 +102,7 @@ try {
     }
 }
 catch(PDOException $e){
-    $message = $message . ('Error : ' . $e->getMessage());
+  echo ('Error : ' . $e->getMessage());
   exit();
 }
 

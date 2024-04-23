@@ -66,7 +66,7 @@ else {
         setcookie('name_error', '2', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
-    else if (!preg_match('/^[а-яА-ЯёЁ\s]+$/', $_POST['name'])) {
+    else if (!preg_match('/^[а-яА-ЯёЁ\s]+$/u/', $_POST['name'])) {
         setcookie('name_error', '3', time() + 24 * 60 * 60);
         $errors = TRUE;
     }

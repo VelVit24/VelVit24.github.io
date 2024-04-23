@@ -47,7 +47,7 @@
                 <input name="birthday" <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>">
             </label><br/>
             <label>Пол<br/>
-                <input type="radio" name="gender" value="male" checked>  Мужской<br/>
+                <input type="radio" name="gender" value="male">  Мужской<br/>
                 <input type="radio" name="gender" value="female">  Женский
             </label><br/>
             <label>Языки программирования:<br/>
@@ -68,8 +68,8 @@
             <label>Биография<br/>
                 <textarea name="biography" <?php if ($errors['bio']) {print 'class="error"';} ?> ><?php print $values['bio']; ?></textarea>
             </label><br/>
-            <label for="cb" class="label-checkbox"  <?php if ($errors['check']) {print 'class="error"';} ?>>
-                <input name="check" type="checkbox" id="cb" value="1"> С контрактом ознакомлен(а).
+            <label for="cb" class="label-checkbox">
+                <input name="check" type="checkbox" id="cb" value="1" <?php if ($errors['check']) {print 'class="error"';} ?> > С контрактом ознакомлен(а).
             </label><br/>
             <input type="submit" value="Сохранить">
         </form>

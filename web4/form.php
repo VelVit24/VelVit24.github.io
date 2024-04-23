@@ -69,7 +69,7 @@
                 <textarea name="biography" <?php if ($errors['bio']) {print 'class="error"';} ?> ><?php print $values['bio']; ?></textarea>
             </label><br/>
             <label for="cb" class="label-checkbox"  <?php if ($errors['check']) {print 'class="error"';} ?>>
-                <input name="check" type="checkbox" id="cb"> С контрактом ознакомлен(а).
+                <input name="check" type="checkbox" id="cb" value="1"> С контрактом ознакомлен(а).
             </label><br/>
             <input type="submit" value="Сохранить">
         </form>

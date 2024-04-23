@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('date_error', '', 100000);
     }
     if ($errors['bio']) {
-        if ($_COOKIE['bio'] == 1)
+        if ($_COOKIE['bio_error'] == 1)
             $messages[] = '<div class="error">Заполните биографию.</div>';
         if ($_COOKIE['bio_error'] == 2)
             $messages[] = '<div class="error">Длина биографии должна быть от 1 до 1000 символов.</div>';
@@ -75,7 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $messages[] = '<div class="error">Биография должна содержать только буквы, цифры, пробелы и символы .,-;:@%!"</div>';
         setcookie('bio_error', '', 100000);
     }
-
+    if ($errors['check']) {
+        if ($_COOKIE['check_error'] == 1)
+            $messages[] = '<div class="error">С контрактом ознакомлен</div>';
+        setcookie('check_error', '', 100000);
+    }
     // TODO: тут выдать сообщения об ошибках в других полях.
 
     // Складываем предыдущие значения полей в массив, если есть.
@@ -108,7 +112,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
+        setcookie('name_value', $_POST['name'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['phone'])) {
@@ -120,7 +124,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('phone_value', $_POST['phone'], time() + 30 * 24 * 60 * 60);
+        setcookie('phone_value', $_POST['phone'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['email'])) {
@@ -131,12 +135,12 @@ else {
         setcookie('email_error', '2', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
-    else if (!preg_match('/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]$/', $_POST['email'])) {
+    else if (!preg_match('/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/', $_POST['email'])) {
         setcookie('email_error', '3', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     else {
-        setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
+        setcookie('email_value', $_POST['email'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['birthday'])) {
@@ -148,7 +152,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('date_value', $_POST['birthday'], time() + 30 * 24 * 60 * 60);
+        setcookie('date_value', $_POST['birthday'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['biography'])) {
@@ -164,7 +168,11 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('bio_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
+        setcookie('bio_value', $_POST['biography'], time() + 365 * 24 * 60 * 60);
+    }
+    if (empty($_POST['check'])) {
+        setcookie('check_error', '1', time() + 24 * 60 * 60);
+        $errors = TRUE;
     }
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.

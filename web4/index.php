@@ -131,7 +131,7 @@ else {
         setcookie('email_error', '2', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
-    else if (!preg_match('/^(([a-z0-9_-]+\.)*[a-z0-9_-]+)@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]$/', $_POST['email'])) {
+    else if (!preg_match('/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]$/', $_POST['email'])) {
         setcookie('email_error', '3', time() + 24 * 60 * 60);
         $errors = TRUE;
     }

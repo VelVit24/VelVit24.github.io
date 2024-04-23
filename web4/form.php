@@ -47,8 +47,8 @@
                 <input name="birthday" <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>">
             </label><br/>
             <label>Пол<br/>
-                <input type="radio" name="gender" value="male">  Мужской<br/>
-                <input type="radio" name="gender" value="female">  Женский
+                <input type="radio" name="gender" value="male" <?php if ($errors['date']) {print 'class="error"';} ?> <?php if ($values['gen']=="male") {print checked;} ?> >  Мужской<br/>
+                <input type="radio" name="gender" value="female" <?php if ($errors['date']) {print 'class="error"';} ?> <?php if ($values['gen']=="female") {print checked;} ?> >  Женский
             </label><br/>
             <label>Языки программирования:<br/>
                 <select multiple name="languages[]">

@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $errors['phone'] = !empty($_COOKIE['phone_error']);
     $errors['email'] = !empty($_COOKIE['email_error']);
     $errors['date'] = !empty($_COOKIE['date_error']);
+    $errors['gender'] = !empty($_COOKIE['gen_error']);
     $errors['bio'] = !empty($_COOKIE['bio_error']);
     $errors['check'] = !empty($_COOKIE['check_error']);
 
@@ -66,6 +67,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $messages[] = '<div class="error">Неправильная дата рождения: дата должна быть в формате DD.MM.YYYY</div>';
         setcookie('date_error', '', 100000);
     }
+    if ($errors['gender']) {
+        if ($_COOKIE['gen_error'] == 1)
+            $messages[] = '<div class="error">Выберите пол</div>';
+        setcookie('gen_error', '', 100000);
+    }
     if ($errors['bio']) {
         if ($_COOKIE['bio_error'] == 1)
             $messages[] = '<div class="error">Заполните биографию.</div>';
@@ -88,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['phone'] = empty($_COOKIE['phone_value']) ? '' : $_COOKIE['phone_value'];
     $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
     $values['date'] = empty($_COOKIE['date_value']) ? '' : $_COOKIE['date_value'];
+    $values['gen'] = empty($_COOKIE['gen_value']) ? '' : $_COOKIE['gen_value'];
     $values['bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
 
     // TODO: аналогично все поля.
@@ -155,6 +162,14 @@ else {
         setcookie('date_value', $_POST['birthday'], time() + 365 * 24 * 60 * 60);
     }
 
+    if (empty($_POST['gender'])) {
+        setcookie('gen_error', '1', time() + 24 * 60 * 60);
+        $errors = TRUE;
+    }
+    else {
+        setcookie('gen_value', $_POST['gender'], time() + 365 * 24 * 60 * 60);
+    }
+
     if (empty($_POST['biography'])) {
         setcookie('bio_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
@@ -189,6 +204,7 @@ else {
         setcookie('phone_error', '', 100000);
         setcookie('email_error', '', 100000);
         setcookie('date_error', '', 100000);
+        setcookie('gen_error', '', 100000);
         setcookie('bio_error', '', 100000);
         // TODO: тут необходимо удалить остальные Cookies.
     }

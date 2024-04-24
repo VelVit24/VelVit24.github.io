@@ -42,14 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if ($_COOKIE['name_error'] == 2)
             $messages[] = '<div class="error">Длина имени должна быть от 1 до 150 символов.</div>';
         if ($_COOKIE['name_error'] == 3)
-            $messages[] = '<div class="error">Имя должно содержать только буквы кириллицы и пробелы</div>';
+            $messages[] = '<div class="error">Имя должно содержать только русские буквы и пробелы.</div>';
         setcookie('name_error', '', 100000);
     }
     if ($errors['phone']) {
         if ($_COOKIE['phone_error'] == 1)
             $messages[] = '<div class="error">Заполните номер телефона.</div>';
         if ($_COOKIE['phone_error'] == 2)
-            $messages[] = '<div class="error">Неправильный номер телефона: номер должен начинаться с +7, 7 или 8 и состоять из цифр</div>';
+            $messages[] = '<div class="error">Неправильный номер телефона: номер должен состоять из 11 цифр.</div>';
+        if ($_COOKIE['phone_error'] == 3)
+            $messages[] = '<div class="error">Неправильный номер телефона: номер должен начинаться с 7 или 8 и состоять только из цифр.</div>';
         setcookie('phone_error', '', 100000);
     }
     if ($errors['email']) {
@@ -58,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if ($_COOKIE['email_error'] == 2)
             $messages[] = '<div class="error">Длина Email должна быть от 5 до 256 символов.</div>';
         if ($_COOKIE['email_error'] == 3)
-            $messages[] = '<div class="error">Неправильный Email: должен содержать только строчные латинские буквы, нижнее подчеркивание, дефис и точку.</div>';
+            $messages[] = '<div class="error">Неправильный Email: должен содержать только строчные латинские буквы и символы _-.@</div>';
         setcookie('email_error', '', 100000);
     }
     if ($errors['date']) {
@@ -70,8 +72,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     if ($errors['gender']) {
         if ($_COOKIE['gen_error'] == 1)
-            $messages[] = '<div class="error">Выберите пол</div>';
+            $messages[] = '<div class="error">Выберите пол.</div>';
         setcookie('gen_error', '', 100000);
+    }
+    if ($errors['lang']) {
+        if ($_COOKIE['lang_error'] == 1)
+            $messages[] = '<div class="error">Укажите хотя бы 1 язык программирования.</div>';
+        setcookie('lang_error', '', 100000);
     }
     if ($errors['bio']) {
         if ($_COOKIE['bio_error'] == 1)
@@ -84,13 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     if ($errors['check']) {
         if ($_COOKIE['check_error'] == 1)
-            $messages[] = '<div class="error">С контрактом ознакомлен</div>';
+            $messages[] = '<div class="error">Отметьте галочку напротив "С контрактом ознакомлен(а)"</div>';
         setcookie('check_error', '', 100000);
-    }
-    if ($errors['lang']) {
-        if ($_COOKIE['lang_error'] == 1)
-            $messages[] = '<div class="error">Укажите хотя бы 1 язык программирования</div>';
-        setcookie('lang_error', '', 100000);
     }
     // TODO: тут выдать сообщения об ошибках в других полях.
 
@@ -133,8 +135,12 @@ else {
         setcookie('phone_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
-    else if (!preg_match('/^(\+7|7|8)[0-9]{10}$/', $_POST['phone'])) {
+    else if (!preg_match('/^.{11}$/', $_POST['phone'])) {
         setcookie('phone_error', '2', time() + 24 * 60 * 60);
+        $errors = TRUE;
+    }
+    else if (!preg_match('/^(7|8)[0-9]{10}$/', $_POST['phone'])) {
+        setcookie('phone_error', '3', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     else {
@@ -227,6 +233,7 @@ else {
         setcookie('gen_error', '', 100000);
         setcookie('lang_error', '', 100000);
         setcookie('bio_error', '', 100000);
+        setcookie('check_error', '', 100000);
         // TODO: тут необходимо удалить остальные Cookies.
     }
 

@@ -103,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['gen'] = empty($_COOKIE['gen_value']) ? '' : $_COOKIE['gen_value'];
     $values['lang'] = empty($_COOKIE['lang_value']) ? '' : $_COOKIE['lang_value'];
     $values['bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
-    var_dump($values['lang']);
 
     // TODO: аналогично все поля.
 
@@ -204,7 +203,7 @@ else {
         $errors = TRUE;
     }
     else {
-        $t = "|";
+        $t = "||";
         foreach ($_POST['languages'] as $lg) {
             $t = $t . $lg . "|";
         }

@@ -204,7 +204,11 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('lang_value', $_POST['languages'], time() + 365 * 24 * 60 * 60);
+        $t = "|";
+        foreach ($_POST['languages'] as $lg) {
+            $t = $t . $lg . "|";
+        }
+        setcookie('lang_value', $t, time() + 365 * 24 * 60 * 60);
     }
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.

@@ -52,17 +52,17 @@
             </label><br/>
             <label>Языки программирования:<br/>
                 <select multiple name="languages[]" <?php if ($errors['date']) {print 'class="error"';} ?>>
-                    <option value="1" <?php if (in_array("1",$values['lang'])) {print 'selected';} ?>>Pascal</option>
-                    <option value="2" <?php if (in_array("2",$values['lang'])) {print 'selected';} ?>>C</option>
-                    <option value="3" <?php if (in_array("3",$values['lang'])) {print 'selected';} ?>>C++</option>
-                    <option value="4" <?php if (in_array("4",$values['lang'])) {print 'selected';} ?>>JavaScript</option>
-                    <option value="5" <?php if (in_array("5",$values['lang'])) {print 'selected';} ?>>PHP</option>
-                    <option value="6" <?php if (in_array("6",$values['lang'])) {print 'selected';} ?>>Python</option>
-                    <option value="7" <?php if (in_array("7",$values['lang'])) {print 'selected';} ?>>Java</option>
-                    <option value="8" <?php if (in_array("8",$values['lang'])) {print 'selected';} ?>>Haskel</option>
-                    <option value="9" <?php if (in_array("9",$values['lang'])) {print 'selected';} ?>>Clojure</option>
-                    <option value="10" <?php if (in_array("10",$values['lang'])) {print 'selected';} ?>>Prolog</option>
-                    <option value="11" <?php if (in_array("11",$values['lang'])) {print 'selected';} ?>>Scala</option>
+                    <option value="1" <?php //if (in_array("1",$values['lang'])) {print 'selected';} ?>>Pascal</option>
+                    <option value="2" <?php //if (in_array("2",$values['lang'])) {print 'selected';} ?>>C</option>
+                    <option value="3" <?php //if (in_array("3",$values['lang'])) {print 'selected';} ?>>C++</option>
+                    <option value="4" <?php //if (in_array("4",$values['lang'])) {print 'selected';} ?>>JavaScript</option>
+                    <option value="5" <?php //if (in_array("5",$values['lang'])) {print 'selected';} ?>>PHP</option>
+                    <option value="6" <?php //if (in_array("6",$values['lang'])) {print 'selected';} ?>>Python</option>
+                    <option value="7" <?php //if (in_array("7",$values['lang'])) {print 'selected';} ?>>Java</option>
+                    <option value="8" <?php //if (in_array("8",$values['lang'])) {print 'selected';} ?>>Haskel</option>
+                    <option value="9" <?php //if (in_array("9",$values['lang'])) {print 'selected';} ?>>Clojure</option>
+                    <option value="10" <?php //if (in_array("10",$values['lang'])) {print 'selected';} ?>>Prolog</option>
+                    <option value="11" <?php //if (in_array("11",$values['lang'])) {print 'selected';} ?>>Scala</option>
                 </select>
             </label><br/>
             <label>Биография<br/>

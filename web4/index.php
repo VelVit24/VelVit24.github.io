@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $errors['date'] = !empty($_COOKIE['date_error']);
     $errors['gender'] = !empty($_COOKIE['gen_error']);
     $errors['bio'] = !empty($_COOKIE['bio_error']);
+    $errors['lang'] = !empty($_COOKIE['lang_error']);
     $errors['check'] = !empty($_COOKIE['check_error']);
 
     // Выдаем сообщения об ошибках.
@@ -86,6 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $messages[] = '<div class="error">С контрактом ознакомлен</div>';
         setcookie('check_error', '', 100000);
     }
+    if ($errors['lang']) {
+        if ($_COOKIE['lang_error'] == 1)
+            $messages[] = '<div class="error">Укажите хотя бы 1 язык программирования</div>';
+        setcookie('lang_error', '', 100000);
+    }
     // TODO: тут выдать сообщения об ошибках в других полях.
 
     // Складываем предыдущие значения полей в массив, если есть.
@@ -95,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
     $values['date'] = empty($_COOKIE['date_value']) ? '' : $_COOKIE['date_value'];
     $values['gen'] = empty($_COOKIE['gen_value']) ? '' : $_COOKIE['gen_value'];
+    $values['lang'] = empty($_COOKIE['lang_value']) ? '' : $_COOKIE['lang_value'];
     $values['bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
 
     // TODO: аналогично все поля.
@@ -185,9 +192,18 @@ else {
     else {
         setcookie('bio_value', $_POST['biography'], time() + 365 * 24 * 60 * 60);
     }
+
     if (empty($_POST['check'])) {
         setcookie('check_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
+    }
+
+    if (empty($_POST['languages'])) {
+        setcookie('lang_error', '1', time() + 24 * 60 * 60);
+        $errors = TRUE;
+    }
+    else {
+        setcookie('lang_value', $_POST['languages'], time() + 365 * 24 * 60 * 60);
     }
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.
@@ -205,6 +221,7 @@ else {
         setcookie('email_error', '', 100000);
         setcookie('date_error', '', 100000);
         setcookie('gen_error', '', 100000);
+        setcookie('lang_error', '', 100000);
         setcookie('bio_error', '', 100000);
         // TODO: тут необходимо удалить остальные Cookies.
     }

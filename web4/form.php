@@ -42,8 +42,8 @@
                 <input name="birthday" <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>">
             </label><br/>
             <label>Пол<br/>
-                <input type="radio" name="gender" value="male" <?php if ($errors['gender']) {print 'class="error"';} ?> <?php if ($values['gen']=="male") {print 'checked';} ?> >  Мужской<br/>
-                <input type="radio" name="gender" value="female" <?php if ($errors['gender']) {print 'class="error"';} ?> <?php if ($values['gen']=="female") {print 'checked';} ?> >  Женский
+                <input type="radio" name="gender" value="male" <?php if ($errors['gender']) {print 'class="error-ch"';} ?> <?php if ($values['gen']=="male") {print 'checked';} ?> >  Мужской<br/>
+                <input type="radio" name="gender" value="female" <?php if ($errors['gender']) {print 'class="error-ch"';} ?> <?php if ($values['gen']=="female") {print 'checked';} ?> >  Женский
             </label><br/>
             <label>Языки программирования:<br/>
                 <select multiple name="languages[]" <?php if ($errors['date']) {print 'class="error"';} ?>>
@@ -64,7 +64,7 @@
                 <textarea name="biography" <?php if ($errors['bio']) {print 'class="error"';} ?> ><?php print $values['bio']; ?></textarea>
             </label><br/>
             <label for="cb" class="label-checkbox">
-                <input name="check" type="checkbox" id="cb" value="1" <?php if ($errors['check']) {print 'class="error"';} ?> > С контрактом ознакомлен(а).
+                <input name="check" type="checkbox" id="cb" value="1" <?php if ($errors['check']) {print 'class="error-ch"';} ?> > С контрактом ознакомлен(а).
             </label><br/>
             <input type="submit" value="Сохранить">
         </form>

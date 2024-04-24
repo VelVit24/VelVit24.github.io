@@ -46,7 +46,7 @@
                 <input type="radio" name="gender" value="female" <?php if ($errors['gender']) {print 'class="error-ch"';} ?> <?php if ($values['gen']=="female") {print 'checked';} ?> >  Женский
             </label><br/>
             <label>Языки программирования:<br/>
-                <select multiple name="languages[]" <?php if ($errors['date']) {print 'class="error"';} ?>>
+                <select multiple name="languages[]" <?php if ($errors['lang']) {print 'class="error"';} ?>>
                     <option value="1" <?php if (strpos($values['lang'], "|1|")) {print 'selected';} ?>>Pascal</option>
                     <option value="2" <?php if (strpos($values['lang'], "|2|")) {print 'selected';} ?>>C</option>
                     <option value="3" <?php if (strpos($values['lang'], "|3|")) {print 'selected';} ?>>C++</option>

@@ -1,31 +1,34 @@
 <html>
-  <head>
+<head>
     <style>
-/* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
-.error {
-  border: 2px solid red;
-}
+        /* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
+        .error {
+            border: 2px solid red;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
 
 <?php
 if (!empty($messages)) {
-  print('<div id="messages">');
-  // Выводим все сообщения.
-  foreach ($messages as $message) {
-    print($message);
-  }
-  print('</div>');
+    print('<div id="messages">');
+    // Выводим все сообщения.
+    foreach ($messages as $message) {
+        print($message);
+    }
+    print('</div>');
 }
 
 // Далее выводим форму отмечая элементы с ошибками классом error
 // и задавая начальные значения элементов ранее сохраненными.
 ?>
 
-    <form action="" method="POST">
-      <input name="fio" <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" />
-      <input type="submit" value="ok" />
-    </form>
-  </body>
+<form action="" method="POST">
+    <input name="fio" <?php if ($errors['fio']) {
+        print 'class="error"';
+    } ?> value="<?php print $values['fio']; ?>"/>
+    <input type="submit" name="act" value="Ok"/>
+    <input type="submit" name="act" value="Exit">
+</form>
+</body>
 </html>

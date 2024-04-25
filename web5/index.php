@@ -69,6 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // сообщений, полей с ранее заполненными данными и признаками ошибок.
     include('form.php');
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
+else if ($_POST['act'] == 'Exit') {
+    session_destroy();
+}
 else {
     // Проверяем ошибки.
     $errors = FALSE;

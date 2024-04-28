@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     echo('<a href="login.php">войти</a>');
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
-    if (!empty($_COOKIE[session_name()]) and isset($_POST['act_exit'])) {
+    if (isset($_POST['act_exit'])) {
         session_destroy();
         setcookie('name_value', '', 100000);
         setcookie('phone_value', '', 100000);

@@ -66,7 +66,7 @@
             <label for="cb" class="label-checkbox">
                 <input name="check" type="checkbox" id="cb" value="1" <?php if ($errors['check']) {print 'class="error-ch"';} ?> > С контрактом ознакомлен(а).
             </label><br/>
-            <input type="submit" value="Сохранить">
+            <input type="submit" name="ok" value="Сохранить">
             <?php
             if (!empty($_COOKIE[session_name()])) {
                 print('<input type="submit" name="act_exit" value="Выход">');

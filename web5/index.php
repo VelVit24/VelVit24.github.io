@@ -282,15 +282,15 @@ else {
     // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
     if (!empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
-        $stmt = $db->prepare("UPDATE applications SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
+        $stmt = $db->prepare("UPDATE application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
         $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography'],$_SESSION['uid']]);
         // TODO: перезаписать данные в БД новыми данными,
         // кроме логина и пароля.
         //print($_SESSION['uid']);
     } else {
         // Генерируем уникальный логин и пароль.
-        $login = uniqid('1');
-        $pass = uniqid('2');
+        $login = uniqid();
+        $pass = uniqid();
 
         // Сохраняем в Cookies.
         setcookie('login', $login);

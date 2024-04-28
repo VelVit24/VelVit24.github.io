@@ -125,6 +125,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // ранее в сессию записан факт успешного логина.
     if (empty($errors) && !empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
+        $stmt = $db->prepare("SELECT * FROM application WHERE id_app = ?");
+        $stmt->execute([$_SESSION['uid']]);
+        $data = $stmt->fetch();
+        $values['name'] = $data['name'];
+        $values['phone'] = $data['phone_number'];
+        $values['email'] = $data['email'];
+        $values['date'] = $data['birthday'];
+        $values['gen'] = $data['gender'];
+        $values['bio'] = $data['biography'];
+
+        $stmt = $db->prepare("SELECT * FROM applications_languages WHERE id_app = ?");
+        $stmt->execute([$_SESSION['uid']]);
+        $t = "||";
+        while ($row = $stmt->fetch()) {
+            $t = $t . $row['id_lang'] . "|";
+        }
+        $values['lang'] = $t;
         // TODO: загрузить данные пользователя из БД
         // и заполнить переменную $values,
         // предварительно санитизовав.
@@ -265,11 +282,11 @@ else {
     // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
     if (!empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
-        //$stmt = $db->prepare("UPDATE applications SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
-        //$stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography'],$_SESSION['uid']]);
+        $stmt = $db->prepare("UPDATE applications SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
+        $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography'],$_SESSION['uid']]);
         // TODO: перезаписать данные в БД новыми данными,
         // кроме логина и пароля.
-        print($_SESSION['uid']);
+        //print($_SESSION['uid']);
     } else {
         // Генерируем уникальный логин и пароль.
         $login = uniqid('1');

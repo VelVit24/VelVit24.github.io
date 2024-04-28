@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // В нем будут доступны переменные $messages, $errors и $values для вывода
     // сообщений, полей с ранее заполненными данными и признаками ошибок.
     include('form.php');
+    echo('<a href="login.php">войти</a>');
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else if ($_POST['act'] == 'Exit') {
     session_destroy();

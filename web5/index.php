@@ -139,16 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
     if (isset($_POST['act_exit'])) {
-        session_destroy();
-        setcookie('name_value', '', 100000);
-        setcookie('phone_value', '', 100000);
-        setcookie('email_value', '', 100000);
-        setcookie('date_value', '', 100000);
-        setcookie('gen_value', '', 100000);
-        setcookie('lang_value', '', 100000);
-        setcookie('bio_value', '', 100000);
-        setcookie('check_value', '', 100000);
-        header('Location: ./');
+
     }
     // Проверяем ошибки.
     $errors = FALSE;

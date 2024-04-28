@@ -69,7 +69,8 @@
             <input type="submit" name="ok" value="Сохранить">
             <?php
             if (!empty($_COOKIE[session_name()])) {
-                print('<input type="submit" name="act_exit" value="Выход">');
+                print('<form action="exit.php" method="POST">');
+                print('<input type="submit" name="act_exit" value="Выход"></from>');
             }
             ?>
         </form>

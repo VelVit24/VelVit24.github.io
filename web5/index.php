@@ -138,9 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     echo('<a href="login.php">войти</a>');
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
-    if (isset($_POST['act_exit'])) {
-
-    }
     // Проверяем ошибки.
     $errors = FALSE;
     if (empty($_POST['name'])) {
@@ -268,10 +265,11 @@ else {
     // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
     if (!empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
-        $stmt = $db->prepare("UPDATE applications SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
-        $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography'],$_SESSION['uid']]);
+        //$stmt = $db->prepare("UPDATE applications SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
+        //$stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography'],$_SESSION['uid']]);
         // TODO: перезаписать данные в БД новыми данными,
         // кроме логина и пароля.
+        print($_SESSION['uid']);
     } else {
         // Генерируем уникальный логин и пароль.
         $login = uniqid('1');

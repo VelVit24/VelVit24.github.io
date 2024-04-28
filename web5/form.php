@@ -67,13 +67,13 @@
                 <input name="check" type="checkbox" id="cb" value="1" <?php if ($errors['check']) {print 'class="error-ch"';} ?> > С контрактом ознакомлен(а).
             </label><br/>
             <input type="submit" name="ok" value="Сохранить">
-            <?php
-            if (!empty($_COOKIE[session_name()])) {
-                print('<form action="exit.php" method="POST">');
-                print('<input type="submit" name="act_exit" value="Выход"></from>');
-            }
-            ?>
         </form>
+        <?php
+        if (!empty($_COOKIE[session_name()])) {
+            print('<form action="exit.php" method="POST">');
+            print('<input type="submit" name="act_exit" value="Выход"></from>');
+        }
+        ?>
     </div>
 </div>
 </body>

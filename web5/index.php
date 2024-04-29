@@ -297,7 +297,7 @@ else {
     } else {
         session_start();
         // Генерируем уникальный логин и пароль.
-        $login = 'user' . $_SESSION['uid'];
+        $login = 'user';
         $pass = rand(100000, 999999);
 
         // Сохраняем в Cookies.
@@ -314,6 +314,7 @@ else {
             }
             $stmt = $db->prepare("INSERT INTO users SET login = ?, pass = ?, id_app = ?");
             $stmt->execute([$login, md5($pass), $li]);
+            $login .= $li;
         }
         catch(PDOException $e){
             echo ('Error : ' . $e->getMessage());

@@ -1,5 +1,6 @@
 <?php
 if (isset($_POST['act_exit'])) {
+    session_start();
     setcookie(session_name(), '', 100000);
     $_SESSION = array();
     session_destroy();

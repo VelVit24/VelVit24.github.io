@@ -153,6 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // сообщений, полей с ранее заполненными данными и признаками ошибок.
     include('form.php');
     echo('<a href="login.php">войти</a>');
+    session_start();
     printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {

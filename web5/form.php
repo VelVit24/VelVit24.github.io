@@ -69,7 +69,7 @@
             <input type="submit" name="ok" value="Сохранить">
         </form>
         <?php
-        if (!empty($_SESSION['login'])) {
+        if (session_start() && !empty($_SESSION['login'])) {
             print('<form action="exit.php" method="POST">');
             print('<input type="submit" name="act_exit" value="Выход"></from>');
         }

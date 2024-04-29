@@ -12,6 +12,11 @@
 </div>
 <div class="container">
     <div class="cont">
+        <?php
+        if (empty($_COOKIE[session_name()])) {
+            print('<div>Если у вас уже есть логин и пароль, можете войти по <a href="login.php">этой ссылке</a> для изменения уже отправленных значений</div>');
+        }
+        ?>
         <div class="title">
             <h2>Оставить заявку для связи с нами</h2>
         </div>
@@ -69,7 +74,7 @@
             <input type="submit" name="ok" value="Сохранить">
         </form>
         <?php
-        if (session_start() && !empty($_SESSION['login'])) {
+        if (!empty($_COOKIE[session_name()])) {
             print('<form action="exit.php" method="POST">');
             print('<input type="submit" name="act_exit" value="Выход"></from>');
         }

@@ -109,13 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Складываем предыдущие значения полей в массив, если есть.
     $values = array();
-    $values['name'] = empty($_COOKIE['name_value']) ? '' : $_COOKIE['name_value'];
-    $values['phone'] = empty($_COOKIE['phone_value']) ? '' : $_COOKIE['phone_value'];
-    $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
-    $values['date'] = empty($_COOKIE['date_value']) ? '' : $_COOKIE['date_value'];
-    $values['gen'] = empty($_COOKIE['gen_value']) ? '' : $_COOKIE['gen_value'];
-    $values['lang'] = empty($_COOKIE['lang_value']) ? '' : $_COOKIE['lang_value'];
-    $values['bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
+    $values['name'] = empty($_COOKIE['name_value1']) ? '' : $_COOKIE['name_value1'];
+    $values['phone'] = empty($_COOKIE['phone_value1']) ? '' : $_COOKIE['phone_value1'];
+    $values['email'] = empty($_COOKIE['email_value1']) ? '' : $_COOKIE['email_value1'];
+    $values['date'] = empty($_COOKIE['date_value1']) ? '' : $_COOKIE['date_value1'];
+    $values['gen'] = empty($_COOKIE['gen_value1']) ? '' : $_COOKIE['gen_value1'];
+    $values['lang'] = empty($_COOKIE['lang_value1']) ? '' : $_COOKIE['lang_value1'];
+    $values['bio'] = empty($_COOKIE['bio_value1']) ? '' : $_COOKIE['bio_value1'];
 
 
     //подключение к БД
@@ -156,9 +156,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // В нем будут доступны переменные $messages, $errors и $values для вывода
     // сообщений, полей с ранее заполненными данными и признаками ошибок.
     include('form.php');
-    echo('<a href="login.php">войти</a>');
-    session_start();
-    printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
     // Проверяем ошибки.
@@ -176,7 +173,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('name_value', $_POST['name'], time() + 365 * 24 * 60 * 60);
+        setcookie('name_value1', $_POST['name'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['phone'])) {
@@ -192,7 +189,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('phone_value', $_POST['phone'], time() + 365 * 24 * 60 * 60);
+        setcookie('phone_value1', $_POST['phone'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['email'])) {
@@ -208,7 +205,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('email_value', $_POST['email'], time() + 365 * 24 * 60 * 60);
+        setcookie('email_value1', $_POST['email'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['birthday'])) {
@@ -220,7 +217,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('date_value', $_POST['birthday'], time() + 365 * 24 * 60 * 60);
+        setcookie('date_value1', $_POST['birthday'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['gender'])) {
@@ -228,7 +225,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('gen_value', $_POST['gender'], time() + 365 * 24 * 60 * 60);
+        setcookie('gen_value1', $_POST['gender'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['biography'])) {
@@ -244,7 +241,7 @@ else {
         $errors = TRUE;
     }
     else {
-        setcookie('bio_value', $_POST['biography'], time() + 365 * 24 * 60 * 60);
+        setcookie('bio_value1', $_POST['biography'], time() + 365 * 24 * 60 * 60);
     }
 
     if (empty($_POST['check'])) {
@@ -261,7 +258,7 @@ else {
         foreach ($_POST['languages'] as $lg) {
             $t = $t . $lg . "|";
         }
-        setcookie('lang_value', $t, time() + 365 * 24 * 60 * 60);
+        setcookie('lang_value1', $t, time() + 365 * 24 * 60 * 60);
     }
 
 // *************

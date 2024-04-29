@@ -314,7 +314,7 @@ else {
             }
             $stmt = $db->prepare("INSERT INTO users SET login = ?, pass = ?, id_app = ?");
             $stmt->execute([$login, md5($pass), $li]);
-            $login .= $li;
+            $login = 'user' . $li;
         }
         catch(PDOException $e){
             echo ('Error : ' . $e->getMessage());

@@ -284,13 +284,18 @@ else {
         session_start() && !empty($_SESSION['login'])) {
         $stmt = $db->prepare("UPDATE application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
         $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography'],$_SESSION['uid']]);
-        // TODO: перезаписать данные в БД новыми данными,
+        $stmt = $db->prepare("DELETE FROM applications_languages WHERE id_app = ?");
+        $stmt->execute([$_SESSION['uid']]);
+        foreach ($_POST['languages'] as $language) {
+            $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
+            $stmt->execute([$_SESSION['uid'], $language]);
+        }
         // кроме логина и пароля.
         //print($_SESSION['uid']);
     } else {
         // Генерируем уникальный логин и пароль.
-        $login = uniqid();
-        $pass = uniqid();
+        $login = 'user' . $_SESSION['uid'];
+        $pass = rand(100000, 999999);
 
         // Сохраняем в Cookies.
         setcookie('login', $login);

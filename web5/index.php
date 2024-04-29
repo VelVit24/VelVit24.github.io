@@ -295,6 +295,7 @@ else {
         // кроме логина и пароля.
         //print($_SESSION['uid']);
     } else {
+        session_start();
         // Генерируем уникальный логин и пароль.
         $login = 'user' . $_SESSION['uid'];
         $pass = rand(100000, 999999);

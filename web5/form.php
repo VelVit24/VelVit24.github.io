@@ -13,7 +13,7 @@
 <div class="container">
     <div class="cont">
         <?php
-        if (session_start() && empty($_SESSION['login'])) {
+        if (empty($_SESSION['login'])) {
             print('<div>Если у вас уже есть логин и пароль, можете войти по <a href="login.php">этой ссылке</a> для изменения уже отправленных значений</div>');
         }
         ?>
@@ -74,7 +74,7 @@
             <input type="submit" name="ok" value="Сохранить">
         </form>
         <?php
-        if (session_start() && !empty($_SESSION['login'])) {
+        if (!empty($_SESSION['login'])) {
             print('<form action="exit.php" method="POST">');
             print('<input type="submit" name="act_exit" value="Выход"></from>');
         }

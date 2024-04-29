@@ -146,10 +146,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $t = $t . $row['id_lang'] . "|";
         }
         $values['lang'] = $t;
-        // TODO: загрузить данные пользователя из БД
         // и заполнить переменную $values,
         // предварительно санитизовав.
-        printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
+        //printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
     }
 
     // Включаем содержимое файла form.php.

@@ -123,10 +123,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Если нет предыдущих ошибок ввода, есть кука сессии, начали сессию и
     // ранее в сессию записан факт успешного логина.
-    var_dump($errors);
-    var_dump($_COOKIE[session_name()]);
-    var_dump($_SESSION['login']);
-    if (empty($errors) && !empty($_COOKIE[session_name()]) &&
+
+    $fl = false;
+    foreach($errors as $er) if ($er) $fl = true;
+    if (!$fl && !empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
 
         $stmt = $db->prepare("SELECT * FROM application WHERE id_app = ?");

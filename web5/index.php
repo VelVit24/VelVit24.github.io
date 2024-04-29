@@ -301,7 +301,6 @@ else {
         $pass = rand(100000, 999999);
 
         // Сохраняем в Cookies.
-        setcookie('login', $login);
         setcookie('pass', $pass);
 
         try {
@@ -312,15 +311,15 @@ else {
                 $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
                 $stmt->execute([$li, $language]);
             }
+            $login = 'user' . $li;
             $stmt = $db->prepare("INSERT INTO users SET login = ?, pass = ?, id_app = ?");
             $stmt->execute([$login, md5($pass), $li]);
-            $login = 'user' . $li;
         }
         catch(PDOException $e){
             echo ('Error : ' . $e->getMessage());
             exit();
         }
-
+        setcookie('login', $login);
     }
 
     // Сохраняем куку с признаком успешного сохранения.

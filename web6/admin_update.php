@@ -1,4 +1,5 @@
 <?php
+include ('db_conn.php');
 $errors = false;
 if (empty($_POST['upd_id'])) {
     setcookie('upd_id_error', '1', time() + 24 * 60 * 60);

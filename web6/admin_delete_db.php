@@ -1,4 +1,5 @@
 <?php
+include ('db_conn.php');
 $errors = false;
 if (empty($_POST['del_id'])) {
     setcookie('del_id_error', '1', time() + 24 * 60 * 60);

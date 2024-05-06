@@ -54,6 +54,12 @@ var_dump($row2);
             print('<td>'.$row[$i].'</td>');
         }
         print('<td>');
+        foreach ($row2 as $i) {
+            if ($row['id_app'] == $i['id_app']) {
+                print($i['name_lang'].'<br/>');
+            }
+        }
+        print('</td>');
     }
     ?>
 

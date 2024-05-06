@@ -7,10 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     $errors = array();
     $errors['del_id'] = !empty($_COOKIE['del_id_error']);
-    if ($errors['name']) {
-        if ($_COOKIE['name_error'] == 1)
+    if ($errors['del_id']) {
+        if ($_COOKIE['del_id_error'] == 1)
             $messages[] = '<div class="error">Заполните ID пользователя.</div>';
-        if ($_COOKIE['name_error'] == 2)
+        if ($_COOKIE['del_id_error'] == 2)
             $messages[] = '<div class="error">Такого пользователя нет.</div>';
         setcookie('del_id_error', '', 100000);
     }

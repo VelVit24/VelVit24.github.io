@@ -109,13 +109,13 @@ else {
 ?>
 
 Статистика
-<table>
+<table border="2">
     <tr>
         <th>count</th>
         <th>name_lang</th>
     </tr>
     <?php
-    $stmt = $db->query('select count(id_app), lang.name_lang from applications_languages app, programming_language lang where app.id_lang = lang.id_lang group by app.id_lang');
+    $stmt = $db->query('select count(id_app), lang.name_lang from applications_languages app right outer join programming_language lang on app.id_lang = lang.id_lang group by name_lang;');
     while ($row = $stmt->fetch()) {
         print('<tr>');
         for($i = 0; $i < 2; $i++) {
@@ -125,3 +125,4 @@ else {
     }
     ?>
 </table>
+

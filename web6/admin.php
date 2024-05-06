@@ -8,6 +8,7 @@
 // Пример HTTP-аутентификации.
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
+include('db_conn.php');
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
@@ -19,7 +20,9 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
-include('db_conn.php');
+$stmt = $db->prepare("INSERT INTO admin SET login = ?, pass = ?");
+$stmt->execute(['admin', md5('123')]);
+
 // *********
 // Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
 // Реализовать просмотр и удаление всех данных.

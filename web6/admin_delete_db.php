@@ -39,8 +39,10 @@ else if (!empty($_POST['delete'])) {
         setcookie('del_id_error', '', 100000);
     }
     try {
-        $stmt = $db->prepare('DELETE FROM application WHERE id_app = ?');
-        $stmt->execute([$_POST['del_id']]);
+        $stmt3 = $db->prepare('DELETE FROM application WHERE id_app = ?');
+        $stmt3->execute([$_POST['del_id']]);
+        $stmt3 = $db->prepare("DELETE FROM applications_languages WHERE id_app = ?");
+        $stmt3->execute([$_POST['del_id']]);
     }
     catch(PDOException $e){
         echo ('Error : ' . $e->getMessage());

@@ -38,14 +38,14 @@ $row2 = $stmt2->fetchAll();
 <link rel="stylesheet" href='style.css' type="text/css">
 <table border="1">
     <tr>
-        <th>id_app</th>
-        <th>name</th>
-        <th>phone</th>
-        <th>email</th>
-        <th>birthday</th>
-        <th>gender</th>
-        <th>biography</th>
-        <th>languages</th>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Номер телефона</th>
+        <th>Email</th>
+        <th>День рождения</th>
+        <th>Пол</th>
+        <th>Биография</th>
+        <th>Языки программирования</th>
     </tr>
     <?php while ($row = $stmt->fetch()) {
         print('<tr>');
@@ -111,8 +111,8 @@ else {
 Статистика
 <table border="2">
     <tr>
-        <th>count</th>
-        <th>name_lang</th>
+        <th>Count</th>
+        <th>Язык программирования</th>
     </tr>
     <?php
     $stmt = $db->query('select count(id_app), lang.name_lang from applications_languages app right outer join programming_language lang on app.id_lang = lang.id_lang group by name_lang;');

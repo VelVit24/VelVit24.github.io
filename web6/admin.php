@@ -61,7 +61,7 @@ var_dump($row);
 <?php include('admin_delete_db.php'); ?>
 <form action="" method="POST">
     <label> ID пользователя<br/>
-    <input type="text" name="del_id" <?php if ($errors['id']) {print 'class="error"';} ?> >
+    <input type="text" name="del_id" <?php if ($errors['del_id']) {print 'class="error"';} ?> >
     </label><br/>
     <input type="submit" name="delete" value="Удалить">
 </form>

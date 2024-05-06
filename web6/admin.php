@@ -34,7 +34,6 @@ $stmt = $db->query('SELECT * FROM application');
 $stmt2 = $db->query('SELECT app.id_app, pr.name_lang FROM applications_languages app, programming_language pr WHERE app.id_lang = pr.id_lang');
 $row = $stmt->fetch();
 $row2 = $stmt2->fetchAll();
-var_dump($row2);
 ?>
 <link rel="stylesheet" href='style.css' type="text/css">
 <table>

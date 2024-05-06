@@ -27,8 +27,10 @@ else if (!empty($_POST['delete'])) {
         while ($row = $stmt->fetch()) {
             if ($row['id_app'] == $_POST['del_id']) $fl = true;
         }
-        if (!$fl) setcookie('del_id_error','2',time() + 24 * 60 * 60);
-        $errors = true;
+        if (!$fl) {
+            $errors = true;
+            setcookie('del_id_error','2',time() + 24 * 60 * 60);
+        }
     }
     if ($errors) {
         // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.

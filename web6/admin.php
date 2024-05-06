@@ -58,7 +58,15 @@ var_dump($row);
 </table>
 
 Удаление данных
-<?php include('admin_delete_db.php'); ?>
+<?php include('admin_delete_db.php');
+if (!empty($messages)) {
+    print('<div id="messages">');
+    foreach ($messages as $message) {
+        print($message);
+    }
+    print('</div>');
+}
+?>
 <form action="" method="POST">
     <label> ID пользователя<br/>
     <input type="text" name="del_id" <?php if ($errors['del_id']) {print 'class="error"';} ?> >

@@ -81,3 +81,12 @@ if (!empty($messages)) {
     <input type="submit" name="delete" value="Удалить">
 </form>
 
+Редактирование данных
+<?php
+if (empty($_COOKIE['admin_upd'])) {
+    include('admin_update.php');
+    include('admin_upd_form1.php');
+}
+else {
+    include('admin_upd_form2.php');
+}

@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages = array();
-    if (!empty($_COOKIE['save'])) {
+    if (!empty($_COOKIE['del_save'])) {
         setcookie('del_save', '', 100000);
         $messages[] = 'Пользователь удален.';
     }

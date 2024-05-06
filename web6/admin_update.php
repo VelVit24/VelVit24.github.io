@@ -25,5 +25,4 @@ if ($errors) {
 }
 setcookie('admin_upd', '1');
 setcookie('id_upd', $_POST['upd_id']);
-setcookie('upd_id_save', '', 100000);
 header('Location: admin.php');

@@ -38,8 +38,8 @@ var_dump($row);
     <?php while ($row = $stmt->fetch()) {
         print('<tr>');
 
-        foreach($row as $i) {
-            print('<th>'.$i.'</th>');
+        for($i = 0; $i < 7; $i++) {
+            print('<td>'.$row[$i].'</td>');
         }
     }
     ?>

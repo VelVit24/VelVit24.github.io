@@ -45,6 +45,7 @@ $row2 = $stmt2->fetchAll();
         <th>birthday</th>
         <th>gender</th>
         <th>biography</th>
+        <th>languages</th>
     </tr>
     <?php while ($row = $stmt->fetch()) {
         print('<tr>');
@@ -105,3 +106,22 @@ if (empty($_COOKIE['admin_upd'])) {
 else {
     include('admin_upd_form2.php');
 }
+?>
+
+Статистика
+<table>
+    <tr>
+        <th>count</th>
+        <th>name_lang</th>
+    </tr>
+    <?php
+    $stmt = $db->query('select count(id_app), lang.name_lang from applications_languages app, programming_language lang where app.id_lang = lang.id_lang group by app.id_lang');
+    while ($row = $stmt->fetch()) {
+        print('<tr>');
+        for($i = 0; $i < 2; $i++) {
+            print('<td>'.$row[$i].'</td>');
+        }
+        print('</tr>');
+    }
+    ?>
+</table>

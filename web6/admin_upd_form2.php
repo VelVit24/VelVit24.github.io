@@ -1,5 +1,8 @@
 <?php
 $messages = array();
+if (!empty($_COOKIE['id_upd'])) {
+    $messages['id_upd'] = 'Загружены данные пользователя '.$_COOKIE['id_upd'];
+}
 
 $errors = array();
 $errors['name'] = !empty($_COOKIE['name_error']);

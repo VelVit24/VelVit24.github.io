@@ -182,6 +182,7 @@ else {
     if (!empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
         include('db_update.php');
+        db_update($_SESSION['uid']);
         // кроме логина и пароля.
         //print($_SESSION['uid']);
     } else {

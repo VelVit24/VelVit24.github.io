@@ -103,7 +103,7 @@ if (empty($_COOKIE['admin_upd'])) {
         $messages[] = 'Загружены данные пользователя '.$_COOKIE['id_upd'];
     }
     $errors = array();
-    $errors['upd_id'] = !empty($_COOKIE['del_id_error']);
+    $errors['upd_id'] = !empty($_COOKIE['upd_id_error']);
     if ($errors['upd_id']) {
         if ($_COOKIE['upd_id_error'] == 1)
             $messages[] = '<div class="error">Заполните ID пользователя.</div>';

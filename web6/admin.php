@@ -8,6 +8,7 @@
 // Пример HTTP-аутентификации.
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы..
+header('Content-Type: text/html; charset=UTF-8');
 include('db_conn.php');
 $stmt = $db->query("SELECT * FROM admin");
 $row = $stmt->fetch();
@@ -57,10 +58,11 @@ var_dump($row);
 </table>
 
 Удаление данных
-<form action="admin_delete_db.php" method="POST">
+<?php include('admin_delete_db.php'); ?>
+<form action="" method="POST">
     <label> ID пользователя<br/>
-    <input type="text" name="id" <?php if ($errors['id']) {print 'class="error"';} ?> value="<?php print $values['id']; ?>">
+    <input type="text" name="del_id" <?php if ($errors['id']) {print 'class="error"';} ?> >
     </label><br/>
-    <input type="submit" value="Удалить">
+    <input type="submit" name="delete" value="Удалить">
 </form>
 

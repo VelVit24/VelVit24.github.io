@@ -39,6 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('upd_id_error', '', 100000);
     }
     setcookie('admin_upd', '1');
-    setcookie('id_upd', $_POST['del_id']);
+    setcookie('id_upd', $_POST['upd_id']);
     header('Location: admin.php');
 }

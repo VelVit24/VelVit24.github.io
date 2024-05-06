@@ -9,10 +9,12 @@
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
 include('db_conn.php');
+$stmt = $db->query("SELECT * FROM users");
+$row = $stmt->fetch();
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
-    $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    md5($_SERVER['PHP_AUTH_PW']) != md5('123')) {
+    $_SERVER['PHP_AUTH_USER'] != $row['login']||
+    md5($_SERVER['PHP_AUTH_PW']) != $row['pass']) {
   header('HTTP/1.1 401 Unanthorized');
   header('WWW-Authenticate: Basic realm="My site"');
   print('<h1>401 Требуется авторизация</h1>');
@@ -20,10 +22,23 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
-$stmt = $db->prepare("INSERT INTO admin SET login = ?, pass = ?");
-$stmt->execute(['admin', md5('123')]);
+
 
 // *********
 // Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
 // Реализовать просмотр и удаление всех данных.
 // *********
+
+$stmt = $db->query('SELECT * FROM application');
+$stmt2 = $db->query('SELECT app.id_app, pr.name_lang FROM application app, programming_language pr WHERE app.id_lang = pr.id_lang');
+?>
+<table>
+    <?php while ($row = $stmt->fetch()) {
+        print('<tr>');
+        foreach($row as $i) {
+            print('<th>'.$i.'</th>');
+        }
+    }
+    ?>
+
+</table>

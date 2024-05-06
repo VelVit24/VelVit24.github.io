@@ -30,7 +30,7 @@ print('Вы успешно авторизовались и видите защи
 // *********
 
 $stmt = $db->query('SELECT * FROM application');
-$stmt2 = $db->query('SELECT app.id_app, pr.name_lang FROM application app, programming_language pr WHERE app.id_lang = pr.id_lang');
+$stmt2 = $db->query('SELECT app.id_app, pr.name_lang FROM applications_languages app, programming_language pr WHERE app.id_lang = pr.id_lang');
 ?>
 <table>
     <?php while ($row = $stmt->fetch()) {

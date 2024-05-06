@@ -34,7 +34,17 @@ $stmt2 = $db->query('SELECT app.id_app, pr.name_lang FROM applications_languages
 $row = $stmt->fetch();
 var_dump($row);
 ?>
+<link rel="stylesheet" href='style.css' type="text/css">
 <table>
+    <tr>
+        <th>id_app</th>
+        <th>name</th>
+        <th>phone</th>
+        <th>email</th>
+        <th>birthday</th>
+        <th>gender</th>
+        <th>biography</th>
+    </tr>
     <?php while ($row = $stmt->fetch()) {
         print('<tr>');
 
@@ -45,3 +55,12 @@ var_dump($row);
     ?>
 
 </table>
+
+Удаление данных
+<form action="admin_delete_db.php" method="POST">
+    <label> ID пользователя<br/>
+    <input type="text" name="id" <?php if ($errors['id']) {print 'class="error"';} ?> value="<?php print $values['id']; ?>">
+    </label><br/>
+    <input type="submit" value="Удалить">
+</form>
+

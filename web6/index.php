@@ -156,108 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
     // Проверяем ошибки.
-    $errors = FALSE;
-    if (empty($_POST['name'])) {
-        setcookie('name_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^.{1,150}$/u', $_POST['name'])) {
-        setcookie('name_error', '2', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^[а-яА-ЯёЁ\s]+$/u', $_POST['name'])) {
-        setcookie('name_error', '3', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else {
-        setcookie('name_value1', $_POST['name'], time() + 365 * 24 * 60 * 60);
-    }
-
-    if (empty($_POST['phone'])) {
-        setcookie('phone_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^.{11}$/', $_POST['phone'])) {
-        setcookie('phone_error', '2', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^(7|8)[0-9]{10}$/', $_POST['phone'])) {
-        setcookie('phone_error', '3', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else {
-        setcookie('phone_value1', $_POST['phone'], time() + 365 * 24 * 60 * 60);
-    }
-
-    if (empty($_POST['email'])) {
-        setcookie('email_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^.{5,256}$/u', $_POST['email'])) {
-        setcookie('email_error', '2', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/', $_POST['email'])) {
-        setcookie('email_error', '3', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else {
-        setcookie('email_value1', $_POST['email'], time() + 365 * 24 * 60 * 60);
-    }
-
-    if (empty($_POST['birthday'])) {
-        setcookie('date_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^(0[1-9]|[12][0-9]|3[01])[\.](0[1-9]|1[012])[\.](19|20)\d\d$/', $_POST['birthday'])) {
-        setcookie('date_error', '2', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else {
-        setcookie('date_value1', $_POST['birthday'], time() + 365 * 24 * 60 * 60);
-    }
-
-    if (empty($_POST['gender'])) {
-        setcookie('gen_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else {
-        setcookie('gen_value1', $_POST['gender'], time() + 365 * 24 * 60 * 60);
-    }
-
-    if (empty($_POST['biography'])) {
-        setcookie('bio_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^.{1,1000}$/u', $_POST['biography'])) {
-        setcookie('bio_error', '2', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else if (!preg_match('/^[\w\.,-;:@%!"\s]+$/um', $_POST['biography'])) {
-        setcookie('bio_error', '3', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else {
-        setcookie('bio_value1', $_POST['biography'], time() + 365 * 24 * 60 * 60);
-    }
-
-    if (empty($_POST['check'])) {
-        setcookie('check_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-
-    if (empty($_POST['languages'])) {
-        setcookie('lang_error', '1', time() + 24 * 60 * 60);
-        $errors = TRUE;
-    }
-    else {
-        $t = "||";
-        foreach ($_POST['languages'] as $lg) {
-            $t = $t . $lg . "|";
-        }
-        setcookie('lang_value1', $t, time() + 365 * 24 * 60 * 60);
-    }
-
+    include('validate.php');
 // *************
 //
 // Сохранить в Cookie признаки ошибок и значения полей.
@@ -282,14 +181,7 @@ else {
     // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
     if (!empty($_COOKIE[session_name()]) &&
         session_start() && !empty($_SESSION['login'])) {
-        $stmt = $db->prepare("UPDATE application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ? WHERE id_app = ?");
-        $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography'],$_SESSION['uid']]);
-        $stmt = $db->prepare("DELETE FROM applications_languages WHERE id_app = ?");
-        $stmt->execute([$_SESSION['uid']]);
-        foreach ($_POST['languages'] as $language) {
-            $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
-            $stmt->execute([$_SESSION['uid'], $language]);
-        }
+        include('db_update.php');
         // кроме логина и пароля.
         //print($_SESSION['uid']);
     } else {

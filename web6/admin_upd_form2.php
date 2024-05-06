@@ -83,11 +83,9 @@ $values['bio'] = empty($_COOKIE['bio_value1']) ? '' : $_COOKIE['bio_value1'];
 
 $fl = false;
 foreach($errors as $er) if ($er) $fl = true;
-if (!$fl && !empty($_COOKIE[session_name()]) &&
-    session_start() && !empty($_SESSION['login'])) {
-
+if (!$fl) {
     $stmt = $db->prepare("SELECT * FROM application WHERE id_app = ?");
-    $stmt->execute([$_SESSION['uid']]);
+    $stmt->execute([$_COOKIE['id_upd']]);
     $data = $stmt->fetch();
     $values['name'] = $data['name'];
     $values['phone'] = $data['phone_number'];
@@ -97,7 +95,7 @@ if (!$fl && !empty($_COOKIE[session_name()]) &&
     $values['bio'] = $data['biography'];
 
     $stmt = $db->prepare("SELECT * FROM applications_languages WHERE id_app = ?");
-    $stmt->execute([$_SESSION['uid']]);
+    $stmt->execute([$_COOKIE['id_upd']]);
     $t = "||";
     while ($row = $stmt->fetch()) {
         $t = $t . $row['id_lang'] . "|";

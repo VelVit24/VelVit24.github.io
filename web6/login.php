@@ -49,9 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <?php
 } // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
-    include('../sql.php');
-    $db = new PDO('mysql:host=localhost;dbname=u67330', $user, $pass,
-        [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    include('db_conn.php');
     $stmt = $db->query("SELECT * FROM users");
     $fl = false;
     while ($row = $stmt->fetch()) {

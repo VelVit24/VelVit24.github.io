@@ -13,7 +13,7 @@
 <div class="container">
     <?php
     if (empty($_SESSION['practice_login'])) {
-        print('Регистрация');
+        print('<h3>Регистрация</h3>');
     }
     include ('form_reg.php');
     ?>
@@ -38,6 +38,29 @@
             }
             ?>
         </table>
+        <h3>Разместить заказ</h3>
+        <?php
+        if ($_COOKIE['order_save']) {
+            setcookie('order_save', '', 100000);
+            $message = 'Спасибо, результаты сохранены.';
+        }
+        if (!empty($_COOKIE['pr_order_error'])) {
+            $message = '<div class="error">Пусто.</div>';
+            setcookie('pr_order_error', '', 100000);
+        }
+        if (!empty($message)) {
+            print('<div id="messages">'.$message.'</div>');
+        }
+        ?>
+        <form action="" method="POST">
+            <select multiple name="order[]">
+                <?php
+                for($i=0;$i<count($data);$i++) {
+                    print('<option value="'.$data[$i][0].'">'.$data[$i][1].'</option>');
+                }
+                ?>
+            </select>
+        </form>
     </div>
     <?php } ?>
 </div>

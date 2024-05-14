@@ -22,8 +22,11 @@ if ($errors) {
 }
 
 try {
+    $stmt = $db->query('SELECT id_perf FROM pr_performers');
+    $rows = $stmt->fetchAll();
+    $id_perf = $rows[rand(1,count($rows))][0];
     $stmt = $db->prepare("INSERT INTO pr_orders SET id_user = ?, date = ?, id_perf = ?");
-    $stmt->execute([$_SESSION['practice_uid'], date("Y-m-d"), '0']);
+    $stmt->execute([$_SESSION['practice_uid'], date("Y-m-d"), $id_perf]);
     $li = $db->lastInsertId();
     foreach ($_POST['order'] as $i) {
         $stmt = $db->prepare("INSERT INTO pr_order_price SET id_order = ?, id_price = ?");

@@ -18,4 +18,25 @@
     include ('form_reg.php');
     ?>
     <a href="login.php">ВХОД</a>
+    <?php if (!empty($_SESSION['practice_login'])) {
+        include ('db_conn.php');
+        $stmt = $db->query('SELECT * FROM pr_prices');
+        $data = $stmt->fetchAll();?>
+    <div class="container">
+        <h3>Прайс лист</h3>
+        <table>
+            <tr>
+                <th>Название</th>
+                <th>Цена</th>
+            </tr>
+            <?php
+            for($i=0;$i<count($data)/2;$i++) {
+                print('<tr>');
+                print('<td>'.$data[$i][0].'</td><td>'.$data[$i][1].'</td></tr>');
+                print('</tr>');
+            }
+            ?>
+        </table>
+    </div>
+    <?php } ?>
 </div>

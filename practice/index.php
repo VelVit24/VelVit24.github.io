@@ -31,7 +31,7 @@
             </tr>
             <?php
             var_dump($data);
-            for($i=0;$i<count($data)/2;$i++) {
+            for($i=0;$i<count($data);$i++) {
                 print('<tr>');
                 print('<td>'.$data[$i][1].'</td><td>'.$data[$i][2].'</td></tr>');
                 print('</tr>');

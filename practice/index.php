@@ -17,4 +17,5 @@
     }
     include ('form_reg.php');
     ?>
+    <a href="login.php">ВХОД</a>
 </div>

@@ -34,7 +34,7 @@ if (!empty($_COOKIE[session_name()]) &&
         $li = $db->lastInsertId();
         $login = 'user' . $li;
         $stmt = $db->prepare("INSERT INTO pr_logins SET id_user = ?, login = ?, pass = ?");
-        $stmt->execute([$login, md5($pass), $li]);
+        $stmt->execute([$li,$login, md5($pass)]);
     }
     catch(PDOException $e){
         echo ('Error : ' . $e->getMessage());

@@ -17,7 +17,7 @@ if ($errors) {
 if (!empty($_COOKIE[session_name()]) &&
     session_start() && !empty($_SESSION['practice_login'])) {
     include ('db_conn.php');
-    $stmt = $db->prepare("UPDATE pr_users SET last_name = ?, first_name = ?, phone = ?, email = ?, birthday = ?,  WHERE id_user = ?");
+    $stmt = $db->prepare("UPDATE pr_users SET last_name = ?, first_name = ?, phone = ?, email = ?, birthday = ?  WHERE id_user = ?");
     $stmt->execute([$_POST['last_name'],$_POST['first_name'],$_POST['phone'],$_POST['email'],$_POST['date'],$_SESSION['practice_uid']]);
 } else {
     session_start();

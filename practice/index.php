@@ -51,7 +51,7 @@
             print('<div id="messages">'.$message.'</div>');
         }
         ?>
-        <form action="" method="POST">
+        <form action="form_order_act.php" method="POST">
             <select multiple name="order[]">
                 <?php
                 for($i=0;$i<count($data);$i++) {

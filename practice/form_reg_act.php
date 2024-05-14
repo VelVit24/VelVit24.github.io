@@ -1,4 +1,5 @@
 <?php
+include('db_conn.php');
 include('validate_form_users.php');
 
 if ($errors) {

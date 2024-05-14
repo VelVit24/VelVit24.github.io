@@ -24,6 +24,7 @@ if ($errors) {
 try {
     $stmt = $db->query('SELECT id_perf FROM pr_performers');
     $rows = $stmt->fetchAll();
+    var_dump($rows);
     $id_perf = $rows[rand(1,count($rows))][0];
     $stmt = $db->prepare("INSERT INTO pr_orders SET id_user = ?, date = ?, id_perf = ?");
     $stmt->execute([$_SESSION['practice_uid'], date("Y-m-d"), $id_perf]);

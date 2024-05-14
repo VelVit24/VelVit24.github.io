@@ -29,7 +29,7 @@ if (!empty($_COOKIE[session_name()]) &&
     setcookie('practice_pass', $pass);
 
     try {
-        $stmt = $db->prepare("INSERT INTO pr_user SET last_name = ?, first_name = ?, phone = ?, email = ?, birthday = ?");
+        $stmt = $db->prepare("INSERT INTO pr_users SET last_name = ?, first_name = ?, phone = ?, email = ?, birthday = ?");
         $stmt->execute([$_POST['last_name'],$_POST['first_name'],$_POST['phone'],$_POST['email'],$_POST['date']]);
         $li = $db->lastInsertId();
         $login = 'user' . $li;

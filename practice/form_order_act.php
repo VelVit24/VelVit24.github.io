@@ -1,5 +1,6 @@
 <?php
 include ('db_conn.php');
+session_start();
 $errors = FALSE;
 if (empty($_POST['order'])) {
     setcookie('pr_order_error', '1', time() + 24 * 60 * 60);

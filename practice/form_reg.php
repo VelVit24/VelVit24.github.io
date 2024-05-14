@@ -122,9 +122,4 @@ if (!empty($messages)) {
     </label><br/>
     <input type="submit" name="ok" value="Сохранить">
 </form>
-<?php
-if (!empty($_SESSION['practice_login'])) {
-    print('<form action="exit.php" method="POST">');
-    print('<input type="submit" name="act_exit" value="Выход"></from>');
-}
-?>
+

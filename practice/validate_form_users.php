@@ -55,9 +55,6 @@ if (empty($_POST['email'])) {
 if (empty($_POST['date'])) {
     setcookie('pr_reg_date_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-} else if (!preg_match('/^(0[1-9]|[12][0-9]|3[01])[\.](0[1-9]|1[012])[\.](19|20)\d\d$/', $_POST['date'])) {
-    setcookie('pr_reg_date_error', '2', time() + 24 * 60 * 60);
-    $errors = TRUE;
 } else {
     setcookie('pr_reg_date_value', $_POST['date'], time() + 365 * 24 * 60 * 60);
 }

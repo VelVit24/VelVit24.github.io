@@ -39,7 +39,7 @@
         </table>
         <h3>Разместить заказ</h3>
         <?php
-        if ($_COOKIE['order_save']) {
+        if (!empty($_COOKIE['order_save'])) {
             setcookie('order_save', '', 100000);
             $message = 'Спасибо, результаты сохранены.';
         }
@@ -59,7 +59,7 @@
                 }
                 ?>
             </select><br/>
-            <input type="submit" value="Сохранить">
+            <input type="submit" value="Сохранить" name="order_s">
         </form>
     </div>
     <?php } ?>

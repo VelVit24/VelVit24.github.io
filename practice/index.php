@@ -30,7 +30,6 @@
                 <th>Цена</th>
             </tr>
             <?php
-            var_dump($data);
             for($i=0;$i<count($data);$i++) {
                 print('<tr>');
                 print('<td>'.$data[$i][1].'</td><td>'.$data[$i][2].'</td></tr>');
@@ -59,7 +58,8 @@
                     print('<option value="'.$data[$i][0].'">'.$data[$i][1].'</option>');
                 }
                 ?>
-            </select>
+            </select><br/>
+            <input type="submit" value="Сохранить">
         </form>
     </div>
     <?php } ?>

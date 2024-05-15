@@ -24,7 +24,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 <body>
 <div class="container">
     <h3>Пользователи</h3>
-    <div class="cont">
+    <div class="box">
         <table>
             <tr>
                 <th>id</th>
@@ -129,13 +129,17 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             <label>Email<br/>
                 <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
             </label><br/>
-            <input type="submit" name="red" value="Изменить"><br/>
-            <input type="submit" name="del" value="Удалить"><br/>
+            <label>
+            <input type="submit" name="red" value="Изменить">
+            </label><br/>
+            <label>
+            <input type="submit" name="del" value="Удалить">
+            </label><br/>
         </form>
     </div>
 
     <h3>Заказы</h3>
-    <div class="cont">
+    <div class="box">
         <h4>Найти заказ по id пользователя</h4>
         <?php
         $messages = array();
@@ -166,42 +170,121 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         </form>
         <?php
         if (!empty($_COOKIE['pr_adm_order_user_value'])){
-            setcookie('pr_adm_order_user_value', '', 100000);
             $stmt = $db->prepare('SELECT id_order, date from pr_orders where id_user = ?');
             $stmt->execute([$_COOKIE['pr_adm_order_user_value']]);
             $row1 = $stmt->fetchAll();
             $stmt = $db->prepare('select ords.id_order, name_service, price from pr_orders ords, pr_order_price ord, pr_prices pr where ords.id_order = ord.id_order and ord.id_price = pr.id_price and ords.id_user = ?');
             $stmt->execute([$_COOKIE['pr_adm_order_user_value']]);
             $row2 = $stmt->fetchAll();
-            ?>
-            <table>
-                <tr>
-                    <th>ID заказа</th>
-                    <th>Дата</th>
-                    <th>Название</th>
-                    <th>Цены</th>
-                </tr>
-                <?php
-                for($i=0;$i<count($row1);$i++) {
-                    print('<tr>');
-                    print('<td>'.$row1[$i][0].'</td><td>'.$row1[$i][1].'</td><td>');
-                    for ($j=0; $j<count($row2);$j++) {
-                        if($row1[$i][0] == $row2[$j][0]) {
-                            print($row2[$j][1].'<br/>');
-                        }
-                    }
-                    print('</td><td>');
-                    for ($j=0; $j<count($row2);$j++) {
-                        if($row1[$i][0] == $row2[$j][0]) {
-                            print($row2[$j][2].'<br/>');
-                        }
-                    }
-                    print('</td>');
-                    print('</tr>');
-                }
+            setcookie('pr_adm_order_user_value', '', 100000);
+            if (empty($row1)) print('<div>Ничего не найдено</div>');
+            else {
                 ?>
-            </table>
-            <?php
+                <table>
+                    <tr>
+                        <th>ID заказа</th>
+                        <th>Дата</th>
+                        <th>Название</th>
+                        <th>Цены</th>
+                    </tr>
+                    <?php
+                    for($i=0;$i<count($row1);$i++) {
+                        print('<tr>');
+                        print('<td>'.$row1[$i][0].'</td><td>'.$row1[$i][1].'</td><td>');
+                        for ($j=0; $j<count($row2);$j++) {
+                            if($row1[$i][0] == $row2[$j][0]) {
+                                print($row2[$j][1].'<br/>');
+                            }
+                        }
+                        print('</td><td>');
+                        for ($j=0; $j<count($row2);$j++) {
+                            if($row1[$i][0] == $row2[$j][0]) {
+                                print($row2[$j][2].'<br/>');
+                            }
+                        }
+                        print('</td>');
+                        print('</tr>');
+                    }
+                    ?>
+                </table>
+                <?php
+            }
+        }
+        ?>
+
+        <h4>Найти заказ по дате</h4>
+        <?php
+        $messages = array();
+        $errors = array();
+        $errors['date'] = !empty($_COOKIE['pr_adm_order_date_error']);
+        if ($errors['date']) {
+            if ($_COOKIE['pr_adm_order_date_error'] == 1)
+                $messages[] = '<div class="error">Заполните дату.</div>';
+            if ($_COOKIE['pr_adm_order_date_error'] == 2)
+                $messages[] = '<div class="error">Первая дата должна быть меньше второй.</div>';
+            setcookie('pr_adm_order_date_error', '', 100000);
+        }
+        if (!empty($messages)) {
+            print('<div id="messages">');
+            foreach ($messages as $message) {
+                print($message);
+            }
+            print('</div>');
+        }
+        ?>
+        <form action="adm_order_date_form_act.php" method="POST">
+            <label> От
+                <input name="date1" <?php if ($errors['date']) {print 'class="error"';} ?>>
+            </label>
+            <label> до
+                <input name="date2" <?php if ($errors['date']) {print 'class="error"';} ?>>
+            </label><br/>
+            <label>
+                <input type="submit" value="Найти">
+            </label>
+        </form>
+        <?php
+        if (!empty($_COOKIE['pr_adm_order_date_value1'])){
+            $stmt = $db->prepare('SELECT id_order, date from pr_orders where date >= ? and date <= ?');
+            $stmt->execute([$_COOKIE['pr_adm_order_date_value1'],$_COOKIE['pr_adm_order_date_value2']]);
+            $row1 = $stmt->fetchAll();
+            $stmt = $db->prepare('select ords.id_order, name_service, price from pr_orders ords, pr_order_price ord, pr_prices pr where ords.id_order = ord.id_order and ord.id_price = pr.id_price and ords.date >= ? and ords.date <= ?');
+            $stmt->execute([$_COOKIE['pr_adm_order_date_value1'],$_COOKIE['pr_adm_order_date_value2']]);
+            $row2 = $stmt->fetchAll();
+            setcookie('pr_adm_order_date_value1', '', 100000);
+            setcookie('pr_adm_order_date_value2', '', 100000);
+            if (empty($row1)) print('<div>Ничего не найдено</div>');
+            else {
+                ?>
+                <table>
+                    <tr>
+                        <th>ID заказа</th>
+                        <th>Дата</th>
+                        <th>Название</th>
+                        <th>Цены</th>
+                    </tr>
+                    <?php
+                    for($i=0;$i<count($row1);$i++) {
+                        print('<tr>');
+                        print('<td>'.$row1[$i][0].'</td><td>'.$row1[$i][1].'</td><td>');
+                        for ($j=0; $j<count($row2);$j++) {
+                            if($row1[$i][0] == $row2[$j][0]) {
+                                print($row2[$j][1].'<br/>');
+                            }
+                        }
+                        print('</td><td>');
+                        for ($j=0; $j<count($row2);$j++) {
+                            if($row1[$i][0] == $row2[$j][0]) {
+                                print($row2[$j][2].'<br/>');
+                            }
+                        }
+                        print('</td>');
+                        print('</tr>');
+                    }
+                    ?>
+                </table>
+                <?php
+            }
         }
         ?>
     </div>

@@ -61,6 +61,47 @@
             </select><br/>
             <input type="submit" value="Сохранить" name="order_s">
         </form>
+        <h3>Ваши заказы</h3>
+        <?php
+        $stmt = $db->prepare('SELECT id_order, date from pr_orders where id_user = ?');
+        $stmt->execute([$_SESSION['practice_uid']]);
+        $row1 = $stmt->fetchAll();
+        $stmt = $db->prepare('select id_order, name_service, price from pr_orders ords, pr_order_price ord, pr_prices pr where ords.id_order = ord.id_order and ord.id_price = pr.id_price and ords.id_user = ?');
+        $stmt->execute([$_SESSION['practice_uid']]);
+        $row2 = $stmt->fetchAll();
+        ?>
+        <table>
+            <tr>
+                <th>ID заказа</th>
+                <th>Дата</th>
+                <th>Название</th>
+                <th>Цены</th>
+            </tr>
+            <?php
+            for($i=0;$i<count($row1);$i++) {
+                print('<tr>');
+                print('<td>'.$row1[$i][0].'</td><td>'.$row1[$i][1].'</td><td>');
+                for ($j=0; $j<count($row2);$j++) {
+                    if($row1[$i][0] = $row2[$j][0]) {
+                        print($row2[$j][1].'<br/>');
+                    }
+                }
+                print('</td><td>');
+                for ($j=0; $j<count($row2);$j++) {
+                    if($row1[$i][0] = $row2[$j][0]) {
+                        print($row2[$j][2].'<br/>');
+                    }
+                }
+                print('</td>');
+                print('</tr>');
+            }
+            ?>
+        </table>
     </div>
-    <?php } ?>
+    <?php }
+    if (!empty($_SESSION['login'])) {
+        print('<form action="exit.php" method="POST">');
+        print('<input type="submit" name="act_exit" value="Выход"></form>');
+    }
+    ?>
 </div>

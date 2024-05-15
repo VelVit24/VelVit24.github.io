@@ -82,13 +82,13 @@
                 print('<tr>');
                 print('<td>'.$row1[$i][0].'</td><td>'.$row1[$i][1].'</td><td>');
                 for ($j=0; $j<count($row2);$j++) {
-                    if($row1[$i][0] = $row2[$j][0]) {
+                    if($row1[$i][0] == $row2[$j][0]) {
                         print($row2[$j][1].'<br/>');
                     }
                 }
                 print('</td><td>');
                 for ($j=0; $j<count($row2);$j++) {
-                    if($row1[$i][0] = $row2[$j][0]) {
+                    if($row1[$i][0] == $row2[$j][0]) {
                         print($row2[$j][2].'<br/>');
                     }
                 }

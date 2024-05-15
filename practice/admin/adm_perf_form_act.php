@@ -49,12 +49,12 @@ if (isset($_POST['add']) or isset($_POST['red'])) {
         header('Location: admin.php');
         exit();
     } else {
-        setcookie('pr_id_perf_value', '', 100000);
-        setcookie('pr_last_name_value', '', 100000);
-        setcookie('pr_first_name_value', '', 100000);
-        setcookie('pr_date_value', '', 100000);
-        setcookie('pr_phone_value', '', 100000);
-        setcookie('pr_email_value', '', 100000);
+        setcookie('pr_id_perf_error', '', 100000);
+        setcookie('pr_last_name_error', '', 100000);
+        setcookie('pr_first_name_error', '', 100000);
+        setcookie('pr_date_error', '', 100000);
+        setcookie('pr_phone_error', '', 100000);
+        setcookie('pr_email_error', '', 100000);
     }
     if (isset($_POST['add'])) {
         try {

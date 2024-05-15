@@ -14,7 +14,7 @@ if (isset($_POST['red'])) {
             $error = TRUE;
         }
     } else {
-        setcookie('pr_user_id_user_value', $_POST['id_perf'], time() + 24 * 60 * 60);
+        setcookie('pr_user_id_user_value', $_POST['id_user'], time() + 24 * 60 * 60);
     }
     if (empty($_POST['last_name'])) {
         setcookie('pr_user_last_name_error', '1', time() + 24 * 60 * 60);
@@ -50,12 +50,12 @@ if (isset($_POST['red'])) {
         header('Location: admin.php');
         exit();
     } else {
-        setcookie('pr_user_id_user_value', '', 100000);
-        setcookie('pr_user_last_name_value', '', 100000);
-        setcookie('pr_user_first_name_value', '', 100000);
-        setcookie('pr_user_date_value', '', 100000);
-        setcookie('pr_user_phone_value', '', 100000);
-        setcookie('pr_user_email_value', '', 100000);
+        setcookie('pr_user_id_user_error', '', 100000);
+        setcookie('pr_user_last_name_error', '', 100000);
+        setcookie('pr_user_first_name_error', '', 100000);
+        setcookie('pr_user_date_error', '', 100000);
+        setcookie('pr_user_phone_error', '', 100000);
+        setcookie('pr_user_email_error', '', 100000);
     }
     try {
         $stmt = $db->prepare('UPDATE pr_users SET last_name=?, first_name=?, birthday=?, phone=?, email=? where id_user = ?');

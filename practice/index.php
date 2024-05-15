@@ -66,7 +66,7 @@
         $stmt = $db->prepare('SELECT id_order, date from pr_orders where id_user = ?');
         $stmt->execute([$_SESSION['practice_uid']]);
         $row1 = $stmt->fetchAll();
-        $stmt = $db->prepare('select id_order, name_service, price from pr_orders ords, pr_order_price ord, pr_prices pr where ords.id_order = ord.id_order and ord.id_price = pr.id_price and ords.id_user = ?');
+        $stmt = $db->prepare('select ords.id_order, name_service, price from pr_orders ords, pr_order_price ord, pr_prices pr where ords.id_order = ord.id_order and ord.id_price = pr.id_price and ords.id_user = ?');
         $stmt->execute([$_SESSION['practice_uid']]);
         $row2 = $stmt->fetchAll();
         ?>

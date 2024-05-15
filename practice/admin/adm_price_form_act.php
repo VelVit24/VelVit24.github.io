@@ -35,7 +35,7 @@ if (isset($_POST['add']) or isset($_POST['red'])) {
     }
     if (isset($_POST['add'])) {
         try {
-            $stmt = $db->prepare('INSERT INTO pr_prices (id_price, name, price) VALUES (?, ?, ?)');
+            $stmt = $db->prepare('INSERT INTO pr_prices (id_price, name_service, price) VALUES (?, ?, ?)');
             $stmt->execute([$_POST['id_price'], $_POST['name'], $_POST['price']]);
         }
         catch(PDOException $e){
@@ -45,7 +45,7 @@ if (isset($_POST['add']) or isset($_POST['red'])) {
     }
     else {
         try {
-            $stmt = $db->prepare('UPDATE pr_prices SET name = ?, price = ? WHERE id_price = ?');
+            $stmt = $db->prepare('UPDATE pr_prices SET name_service = ?, price = ? WHERE id_price = ?');
             $stmt->execute([$_POST['name'], $_POST['price'], $_POST['id_price']]);
         }
         catch(PDOException $e){

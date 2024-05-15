@@ -90,4 +90,4 @@ else {
 setcookie('pr_price_save', '1');
 
 // Делаем перенаправление.
-header('Location: ./');
+header('Location: admin.php');

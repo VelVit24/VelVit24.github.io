@@ -63,3 +63,7 @@ input[type=submit] {
 .error-ch {
     outline: 2px solid red;
 }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}

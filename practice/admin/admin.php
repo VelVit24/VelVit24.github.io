@@ -19,12 +19,12 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
     <meta charset="utf-8">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href='style.css' type="text/css">
+    <link rel="stylesheet" href='../style.css' type="text/css">
 </head>
 <body>
 <div class="container">
     <h3>Прайс лист</h3>
-    <table border="2">
+    <table>
         <tr>
             <th>id</th>
             <th>Название</th>
@@ -97,7 +97,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 
 
     <h3>Исполнители</h3>
-    <table border="2">
+    <table>
         <tr>
             <th>id</th>
             <th>Фамилия</th>
@@ -110,8 +110,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         $stmt = $db->query("SELECT * FROM pr_performers");
         while ($row = $stmt->fetch()) {
             print('<tr>');
-            foreach ($row as $i) {
-                print('<td>' . $i . '</td>');
+            for ($i=0;$i<count($row)/2;$i++) {
+                print('<td>' . $row[$i] . '</td>');
             }
             print('</tr>');
         }

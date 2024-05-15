@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-include('db_conn.php');
+include('../db_conn.php');
 $stmt = $db->query("SELECT * FROM admin");
 $row = $stmt->fetch();
 if (empty($_SERVER['PHP_AUTH_USER']) ||

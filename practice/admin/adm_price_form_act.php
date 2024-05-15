@@ -25,7 +25,7 @@ if (isset($_POST['add']) or isset($_POST['red'])) {
         $error = TRUE;
     }
     else {setcookie('pr_price_value', $_POST['price'], time() + 24 * 60 * 60);}
-    if ($errors) {
+    if ($error) {
         header('Location: admin.php');
         exit();
     } else {
@@ -35,7 +35,7 @@ if (isset($_POST['add']) or isset($_POST['red'])) {
     }
     if (isset($_POST['add'])) {
         try {
-            $stmt->prepare('INSERT INTO pr_prices (id_price, name, price) VALUES (?, ?, ?)');
+            $stmt = $db->prepare('INSERT INTO pr_prices (id_price, name, price) VALUES (?, ?, ?)');
             $stmt->execute([$_POST['id_price'], $_POST['name'], $_POST['price']]);
         }
         catch(PDOException $e){
@@ -45,7 +45,7 @@ if (isset($_POST['add']) or isset($_POST['red'])) {
     }
     else {
         try {
-            $stmt->prepare('UPDATE pr_prices SET name = ?, price = ? WHERE id_price = ?');
+            $stmt = $db->prepare('UPDATE pr_prices SET name = ?, price = ? WHERE id_price = ?');
             $stmt->execute([$_POST['name'], $_POST['price'], $_POST['id_price']]);
         }
         catch(PDOException $e){
@@ -69,7 +69,7 @@ else {
         }
         else {setcookie('pr_id_price_value', $_POST['id_price'], time() + 24 * 60 * 60);}
     }
-    if ($errors) {
+    if ($error) {
         header('Location: admin.php');
         exit();
     } else {

@@ -94,7 +94,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
     }
 
     $values = array();
-    $values['id_perf'] = empty($_COOKIE['pr_user_id_user_error']) ? '' : $_COOKIE['pr_user_id_user_error'];
+    $values['id_user'] = empty($_COOKIE['pr_user_id_user_error']) ? '' : $_COOKIE['pr_user_id_user_error'];
     $values['last_name'] = empty($_COOKIE['pr_user_last_name_error']) ? '' : $_COOKIE['pr_user_last_name_error'];
     $values['first_name'] = empty($_COOKIE['pr_user_first_name_error']) ? '' : $_COOKIE['pr_user_first_name_error'];
     $values['date'] = empty($_COOKIE['pr_user_date_error']) ? '' : $_COOKIE['pr_user_date_error'];
@@ -128,7 +128,6 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         <label>Email<br/>
             <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
         </label><br/>
-        <input type="submit" name="add" value="Добавить"><br/>
         <input type="submit" name="red" value="Изменить"><br/>
         <input type="submit" name="del" value="Удалить"><br/>
     </form>

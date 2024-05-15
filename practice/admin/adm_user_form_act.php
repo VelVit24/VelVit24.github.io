@@ -1,7 +1,7 @@
 <?php
 
 include('../db_conn.php');
-if (isset($_POST['add']) or isset($_POST['red'])) {
+if (isset($_POST['red'])) {
     $error = FALSE;
     if (empty($_POST['id_user'])) {
         setcookie('pr_user_id_user_error', '1', time() + 24 * 60 * 60);
@@ -57,22 +57,12 @@ if (isset($_POST['add']) or isset($_POST['red'])) {
         setcookie('pr_user_phone_value', '', 100000);
         setcookie('pr_user_email_value', '', 100000);
     }
-    if (isset($_POST['add'])) {
-        try {
-            $stmt = $db->prepare('INSERT INTO pr_users (id_user, last_name, first_name, birthday, phone, email) VALUES (?, ?, ?, ?, ?, ?)');
-            $stmt->execute([$_POST['id_user'], $_POST['last_name'], $_POST['first_name'], $_POST['date'], $_POST['phone'], $_POST['email']]);
-        } catch (PDOException $e) {
-            echo('Error : ' . $e->getMessage());
-            exit();
-        }
-    } else {
-        try {
-            $stmt = $db->prepare('UPDATE pr_users SET last_name=?, first_name=?, birthday=?, phone=?, email=? where id_user = ?');
-            $stmt->execute([$_POST['last_name'], $_POST['first_name'], $_POST['date'], $_POST['phone'], $_POST['email'], $_POST['id_user']]);
-        } catch (PDOException $e) {
-            echo('Error : ' . $e->getMessage());
-            exit();
-        }
+    try {
+        $stmt = $db->prepare('UPDATE pr_users SET last_name=?, first_name=?, birthday=?, phone=?, email=? where id_user = ?');
+        $stmt->execute([$_POST['last_name'], $_POST['first_name'], $_POST['date'], $_POST['phone'], $_POST['email'], $_POST['id_user']]);
+    } catch (PDOException $e) {
+        echo('Error : ' . $e->getMessage());
+        exit();
     }
 } else {
     $error = FALSE;

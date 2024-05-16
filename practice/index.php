@@ -7,17 +7,15 @@
 </head>
 <body>
 <div class="header">
-    <div class="row justify-content-between">
-        <div class="col-6">
+    <div class="wrap">
+        <div class="title">
             <h1>Фото мастерская</h1>
         </div>
-        <div class="col-6">
+        <div class="log-button">
             <?php if(session_start() and empty($_SESSION['practice_login'])) {?>
-                <div class="log-button">
-                    <form action="login.php">
-                        <input type="submit" value="Вход">
-                    </form>
-                </div>
+                <form action="login.php">
+                    <input type="submit" value="Вход">
+                </form>
             <?php } ?>
         </div>
     </div>

@@ -6,8 +6,9 @@
 .cont {
     padding: 50px 0;
 }
-.col-6 {
-    background-color: aquamarine;
+.wrap {
+    display: flex;
+    justify-content: space-between;
 }
 .ind-box {
     padding: 10px;

@@ -45,6 +45,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             }
             ?>
         </table>
+    </div>
+    <div class="ind-box">
         <h3>Изменение пользователей</h3>
         <?php
         $messages = array();
@@ -358,9 +360,9 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             <label>Цена<br/>
                 <input name="price" <?php if ($errors['price']) {print 'class="error"';} ?> value="<?php print $values['price']; ?>">
             </label><br/>
-            <input type="submit" name="add" value="Добавить"><br/>
-            <input type="submit" name="red" value="Изменить"><br/>
-            <input type="submit" name="del" value="Удалить"><br/>
+            <label><input type="submit" name="add" value="Добавить"></label><br/>
+            <label><input type="submit" name="red" value="Изменить"></label><br/>
+            <label><input type="submit" name="del" value="Удалить"></label><br/>
         </form>
     </div>
 
@@ -473,9 +475,9 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             <label>Email<br/>
                 <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
             </label><br/>
-            <input type="submit" name="add" value="Добавить"><br/>
-            <input type="submit" name="red" value="Изменить"><br/>
-            <input type="submit" name="del" value="Удалить"><br/>
+            <label><input type="submit" name="add" value="Добавить"></label><br/>
+            <label><input type="submit" name="red" value="Изменить"></label><br/>
+            <label><input type="submit" name="del" value="Удалить"></label><br/>
         </form>
     </div>
 </div>

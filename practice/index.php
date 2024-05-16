@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="header">
-    <div class="row">
+    <div class="row justify-content-between">
         <div class="col">
             <h1>Фото мастерская</h1>
         </div>

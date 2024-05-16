@@ -11,7 +11,7 @@
 </div>
 <div class="container">
     <?php
-    if (empty($_COOKIE['practice_login'])) {
+    if (session_start() and empty($_SESSION['practice_login'])) {
         print('<h3>Регистрация</h3>');
     }
     include ('form_reg.php');

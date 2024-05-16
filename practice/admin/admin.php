@@ -23,8 +23,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 </head>
 <body>
 <div class="container">
-    <h3>Пользователи</h3>
-    <div class="box">
+    <div class="ind-box">
+        <h3>Пользователи</h3>
         <table>
             <tr>
                 <th>id</th>
@@ -137,9 +137,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             </label><br/>
         </form>
     </div>
-
-    <h3>Заказы</h3>
-    <div class="box">
+    <div class="ind-box">
+        <h3>Заказы</h3>
         <h4>Найти заказ по id пользователя</h4>
         <?php
         $messages = array();
@@ -211,7 +210,6 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             }
         }
         ?>
-
         <h4>Найти заказ по дате</h4>
         <?php
         $messages = array();
@@ -289,187 +287,195 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         ?>
     </div>
 
-
-    <h3>Прайс лист</h3>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Название</th>
-            <th>Цена</th>
-        </tr>
-        <?php
-        $stmt = $db->query("SELECT * FROM pr_prices");
-        while ($row = $stmt->fetch()) {
-            print('<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td></tr>');
-        }
-        ?>
-    </table>
-    <h3>Изменение прайс листа</h3>
-    <?php
-    $messages = array();
-
-    if (!empty($_COOKIE['pr_price_save'])) {
-        setcookie('pr_price_save', '', 100000);
-        $messages[] = 'Спасибо, результаты сохранены.';
-    }
-    $errors = array();
-    $errors['id_price'] = !empty($_COOKIE['pr_id_price_error']);
-    $errors['name'] = !empty($_COOKIE['pr_name_error']);
-    $errors['price'] = !empty($_COOKIE['pr_price_error']);
-
-    if ($errors['id_price']) {
-        if ($_COOKIE['pr_id_price_error'] == 1)
-            $messages[] = '<div class="error">Заполните id.</div>';
-        if ($_COOKIE['pr_id_price_error'] == 2)
-            $messages[] = '<div class="error">Такого id нет.</div>';
-        setcookie('pr_id_price_error', '', 100000);
-    }
-    if ($errors['name']) {
-        if ($_COOKIE['pr_name_error'] == 1)
-            $messages[] = '<div class="error">Заполните название.</div>';
-        setcookie('pr_name_error', '', 100000);
-    }
-    if ($errors['price']) {
-        if ($_COOKIE['pr_price_error'] == 1)
-            $messages[] = '<div class="error">Заполните цену.</div>';
-        setcookie('pr_reg_phone_error', '', 100000);
-    }
-
-    $values = array();
-    $values['id_price'] = empty($_COOKIE['pr_id_price_error']) ? '' : $_COOKIE['pr_id_price_error'];
-    $values['name'] = empty($_COOKIE['pr_name_error']) ? '' : $_COOKIE['pr_name_error'];
-    $values['price'] = empty($_COOKIE['pr_price_error']) ? '' : $_COOKIE['pr_price_error'];
-    if (!empty($messages)) {
-        print('<div id="messages">');
-        foreach ($messages as $message) {
-            print($message);
-        }
-        print('</div>');
-    }
-    ?>
-    <form action="adm_price_form_act.php" method="POST">
-        <label>ID<br/>
-            <input name="id_price" <?php if ($errors['id_price']) {print 'class="error"';} ?> value="<?php print $values['id_price']; ?>">
-        </label><br/>
-        <label>Название<br/>
-            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>">
-        </label><br/>
-        <label>Цена<br/>
-            <input name="price" <?php if ($errors['price']) {print 'class="error"';} ?> value="<?php print $values['price']; ?>">
-        </label><br/>
-        <input type="submit" name="add" value="Добавить"><br/>
-        <input type="submit" name="red" value="Изменить"><br/>
-        <input type="submit" name="del" value="Удалить"><br/>
-    </form>
-
-
-    <h3>Исполнители</h3>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Дата рождения</th>
-            <th>Телефон</th>
-            <th>Email</th>
-        </tr>
-        <?php
-        $stmt = $db->query("SELECT * FROM pr_performers");
-        while ($row = $stmt->fetch()) {
-            print('<tr>');
-            for ($i=0;$i<count($row)/2;$i++) {
-                print('<td>' . $row[$i] . '</td>');
+    <div class="ind-box">
+        <h3>Прайс лист</h3>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Название</th>
+                <th>Цена</th>
+            </tr>
+            <?php
+            $stmt = $db->query("SELECT * FROM pr_prices");
+            while ($row = $stmt->fetch()) {
+                print('<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td></tr>');
             }
-            print('</tr>');
+            ?>
+        </table>
+    </div>
+
+    <div class="ind-box">
+        <h3>Изменение прайс листа</h3>
+        <?php
+        $messages = array();
+
+        if (!empty($_COOKIE['pr_price_save'])) {
+            setcookie('pr_price_save', '', 100000);
+            $messages[] = 'Спасибо, результаты сохранены.';
+        }
+        $errors = array();
+        $errors['id_price'] = !empty($_COOKIE['pr_id_price_error']);
+        $errors['name'] = !empty($_COOKIE['pr_name_error']);
+        $errors['price'] = !empty($_COOKIE['pr_price_error']);
+
+        if ($errors['id_price']) {
+            if ($_COOKIE['pr_id_price_error'] == 1)
+                $messages[] = '<div class="error">Заполните id.</div>';
+            if ($_COOKIE['pr_id_price_error'] == 2)
+                $messages[] = '<div class="error">Такого id нет.</div>';
+            setcookie('pr_id_price_error', '', 100000);
+        }
+        if ($errors['name']) {
+            if ($_COOKIE['pr_name_error'] == 1)
+                $messages[] = '<div class="error">Заполните название.</div>';
+            setcookie('pr_name_error', '', 100000);
+        }
+        if ($errors['price']) {
+            if ($_COOKIE['pr_price_error'] == 1)
+                $messages[] = '<div class="error">Заполните цену.</div>';
+            setcookie('pr_reg_phone_error', '', 100000);
+        }
+
+        $values = array();
+        $values['id_price'] = empty($_COOKIE['pr_id_price_error']) ? '' : $_COOKIE['pr_id_price_error'];
+        $values['name'] = empty($_COOKIE['pr_name_error']) ? '' : $_COOKIE['pr_name_error'];
+        $values['price'] = empty($_COOKIE['pr_price_error']) ? '' : $_COOKIE['pr_price_error'];
+        if (!empty($messages)) {
+            print('<div id="messages">');
+            foreach ($messages as $message) {
+                print($message);
+            }
+            print('</div>');
         }
         ?>
-    </table>
-    <h3>Изменение Исполнителей</h3>
-    <?php
-    $messages = array();
+        <form action="adm_price_form_act.php" method="POST">
+            <label>ID<br/>
+                <input name="id_price" <?php if ($errors['id_price']) {print 'class="error"';} ?> value="<?php print $values['id_price']; ?>">
+            </label><br/>
+            <label>Название<br/>
+                <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>">
+            </label><br/>
+            <label>Цена<br/>
+                <input name="price" <?php if ($errors['price']) {print 'class="error"';} ?> value="<?php print $values['price']; ?>">
+            </label><br/>
+            <input type="submit" name="add" value="Добавить"><br/>
+            <input type="submit" name="red" value="Изменить"><br/>
+            <input type="submit" name="del" value="Удалить"><br/>
+        </form>
+    </div>
 
-    if (!empty($_COOKIE['pr_perf_save'])) {
-        setcookie('pr_perf_save', '', 100000);
-        $messages[] = 'Спасибо, результаты сохранены.';
-    }
-    $errors = array();
-    $errors['id_perf'] = !empty($_COOKIE['pr_id_perf_error']);
-    $errors['last_name'] = !empty($_COOKIE['pr_last_name_error']);
-    $errors['first_name'] = !empty($_COOKIE['pr_first_name_error']);
-    $errors['date'] = !empty($_COOKIE['pr_date_error']);
-    $errors['phone'] = !empty($_COOKIE['pr_phone_error']);
-    $errors['email'] = !empty($_COOKIE['pr_email_error']);
+    <div class="ind-box">
+        <h3>Исполнители</h3>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Дата рождения</th>
+                <th>Телефон</th>
+                <th>Email</th>
+            </tr>
+            <?php
+            $stmt = $db->query("SELECT * FROM pr_performers");
+            while ($row = $stmt->fetch()) {
+                print('<tr>');
+                for ($i=0;$i<count($row)/2;$i++) {
+                    print('<td>' . $row[$i] . '</td>');
+                }
+                print('</tr>');
+            }
+            ?>
+        </table>
+    </div>
 
-    if ($errors['id_perf']) {
-        if ($_COOKIE['pr_id_perf_error'] == 1)
-            $messages[] = '<div class="error">Заполните id.</div>';
-        if ($_COOKIE['pr_id_perf_error'] == 2)
-            $messages[] = '<div class="error">Такого id нет.</div>';
-        setcookie('pr_id_perf_error', '', 100000);
-    }
-    if ($errors['last_name']) {
-        if ($_COOKIE['pr_last_name_error'] == 1)
-            $messages[] = '<div class="error">Заполните Фамилию.</div>';
-        setcookie('pr_last_name_error', '', 100000);
-    }
-    if ($errors['first_name']) {
-        if ($_COOKIE['pr_first_name_error'] == 1)
-            $messages[] = '<div class="error">Заполните Имя.</div>';
-        setcookie('pr_first_name_error', '', 100000);
-    }
-    if ($errors['date']) {
-        if ($_COOKIE['pr_date_error'] == 1)
-            $messages[] = '<div class="error">Заполните дату рождения.</div>';
-        setcookie('pr_date_error', '', 100000);
-    }
-    if ($errors['phone']) {
-        if ($_COOKIE['pr_phone_error'] == 1)
-            $messages[] = '<div class="error">Заполните телефон.</div>';
-        setcookie('pr_phone_error', '', 100000);
-    }
-    if ($errors['email']) {
-        if ($_COOKIE['pr_email_error'] == 1)
-            $messages[] = '<div class="error">Заполните email.</div>';
-        setcookie('pr_email_error', '', 100000);
-    }
+    <div class="ind-box">
+        <h3>Изменение Исполнителей</h3>
+        <?php
+        $messages = array();
 
-    $values = array();
-    $values['id_perf'] = empty($_COOKIE['pr_id_perf_error']) ? '' : $_COOKIE['pr_id_perf_error'];
-    $values['last_name'] = empty($_COOKIE['pr_last_name_error']) ? '' : $_COOKIE['pr_last_name_error'];
-    $values['first_name'] = empty($_COOKIE['pr_first_name_error']) ? '' : $_COOKIE['pr_first_name_error'];
-    $values['date'] = empty($_COOKIE['pr_date_error']) ? '' : $_COOKIE['pr_date_error'];
-    $values['phone'] = empty($_COOKIE['pr_phone_error']) ? '' : $_COOKIE['pr_phone_error'];
-    $values['email'] = empty($_COOKIE['pr_email_error']) ? '' : $_COOKIE['pr_email_error'];
-    if (!empty($messages)) {
-        print('<div id="messages">');
-        // Выводим все сообщения.
-        foreach ($messages as $message) {
-            print($message);
+        if (!empty($_COOKIE['pr_perf_save'])) {
+            setcookie('pr_perf_save', '', 100000);
+            $messages[] = 'Спасибо, результаты сохранены.';
         }
-        print('</div>');
-    }
-    ?>
-    <form action="adm_perf_form_act.php" method="POST">
-        <label>ID<br/>
-            <input name="id_perf" <?php if ($errors['id_perf']) {print 'class="error"';} ?> value="<?php print $values['id_perf']; ?>">
-        </label><br/>
-        <label>Фамилия<br/>
-            <input name="last_name" <?php if ($errors['last_name']) {print 'class="error"';} ?> value="<?php print $values['last_name']; ?>">
-        </label><br/>
-        <label>Имя<br/>
-            <input name="first_name" <?php if ($errors['first_name']) {print 'class="error"';} ?> value="<?php print $values['first_name']; ?>">
-        </label><br/>
-        <label>Дата рождения<br/>
-            <input name="date" type="date" <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>">
-        </label><br/>
-        <label>Телефон<br/>
-            <input name="phone" <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>">
-        </label><br/>
-        <label>Email<br/>
-            <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
-        </label><br/>
-        <input type="submit" name="add" value="Добавить"><br/>
-        <input type="submit" name="red" value="Изменить"><br/>
-        <input type="submit" name="del" value="Удалить"><br/>
-    </form>
+        $errors = array();
+        $errors['id_perf'] = !empty($_COOKIE['pr_id_perf_error']);
+        $errors['last_name'] = !empty($_COOKIE['pr_last_name_error']);
+        $errors['first_name'] = !empty($_COOKIE['pr_first_name_error']);
+        $errors['date'] = !empty($_COOKIE['pr_date_error']);
+        $errors['phone'] = !empty($_COOKIE['pr_phone_error']);
+        $errors['email'] = !empty($_COOKIE['pr_email_error']);
+
+        if ($errors['id_perf']) {
+            if ($_COOKIE['pr_id_perf_error'] == 1)
+                $messages[] = '<div class="error">Заполните id.</div>';
+            if ($_COOKIE['pr_id_perf_error'] == 2)
+                $messages[] = '<div class="error">Такого id нет.</div>';
+            setcookie('pr_id_perf_error', '', 100000);
+        }
+        if ($errors['last_name']) {
+            if ($_COOKIE['pr_last_name_error'] == 1)
+                $messages[] = '<div class="error">Заполните Фамилию.</div>';
+            setcookie('pr_last_name_error', '', 100000);
+        }
+        if ($errors['first_name']) {
+            if ($_COOKIE['pr_first_name_error'] == 1)
+                $messages[] = '<div class="error">Заполните Имя.</div>';
+            setcookie('pr_first_name_error', '', 100000);
+        }
+        if ($errors['date']) {
+            if ($_COOKIE['pr_date_error'] == 1)
+                $messages[] = '<div class="error">Заполните дату рождения.</div>';
+            setcookie('pr_date_error', '', 100000);
+        }
+        if ($errors['phone']) {
+            if ($_COOKIE['pr_phone_error'] == 1)
+                $messages[] = '<div class="error">Заполните телефон.</div>';
+            setcookie('pr_phone_error', '', 100000);
+        }
+        if ($errors['email']) {
+            if ($_COOKIE['pr_email_error'] == 1)
+                $messages[] = '<div class="error">Заполните email.</div>';
+            setcookie('pr_email_error', '', 100000);
+        }
+
+        $values = array();
+        $values['id_perf'] = empty($_COOKIE['pr_id_perf_error']) ? '' : $_COOKIE['pr_id_perf_error'];
+        $values['last_name'] = empty($_COOKIE['pr_last_name_error']) ? '' : $_COOKIE['pr_last_name_error'];
+        $values['first_name'] = empty($_COOKIE['pr_first_name_error']) ? '' : $_COOKIE['pr_first_name_error'];
+        $values['date'] = empty($_COOKIE['pr_date_error']) ? '' : $_COOKIE['pr_date_error'];
+        $values['phone'] = empty($_COOKIE['pr_phone_error']) ? '' : $_COOKIE['pr_phone_error'];
+        $values['email'] = empty($_COOKIE['pr_email_error']) ? '' : $_COOKIE['pr_email_error'];
+        if (!empty($messages)) {
+            print('<div id="messages">');
+            // Выводим все сообщения.
+            foreach ($messages as $message) {
+                print($message);
+            }
+            print('</div>');
+        }
+        ?>
+        <form action="adm_perf_form_act.php" method="POST">
+            <label>ID<br/>
+                <input name="id_perf" <?php if ($errors['id_perf']) {print 'class="error"';} ?> value="<?php print $values['id_perf']; ?>">
+            </label><br/>
+            <label>Фамилия<br/>
+                <input name="last_name" <?php if ($errors['last_name']) {print 'class="error"';} ?> value="<?php print $values['last_name']; ?>">
+            </label><br/>
+            <label>Имя<br/>
+                <input name="first_name" <?php if ($errors['first_name']) {print 'class="error"';} ?> value="<?php print $values['first_name']; ?>">
+            </label><br/>
+            <label>Дата рождения<br/>
+                <input name="date" type="date" <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>">
+            </label><br/>
+            <label>Телефон<br/>
+                <input name="phone" <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>">
+            </label><br/>
+            <label>Email<br/>
+                <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
+            </label><br/>
+            <input type="submit" name="add" value="Добавить"><br/>
+            <input type="submit" name="red" value="Изменить"><br/>
+            <input type="submit" name="del" value="Удалить"><br/>
+        </form>
+    </div>
 </div>

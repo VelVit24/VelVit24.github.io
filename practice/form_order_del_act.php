@@ -22,10 +22,10 @@ if ($errors) {
 }
 
 try {
-    $stmt = $db->prepare("DELETE FROM pr_order_price WHERE id_order = ?");
-    $stmt->execute([$_POST['id_order']]);
-    $stmt = $db->prepare("DELETE FROM pr_orders WHERE id_order = ?");
-    $stmt->execute([$_POST['id_order']]);
+    $stmt = $db->prepare("DELETE pr_order_price FROM pr_order_price pr join pr_orders ord on pr.id_order = ord.id_order WHERE pr.id_order = ? and ord.id_user = ?");
+    $stmt->execute([$_POST['id_order'], $_SESSION['practice_login']]);
+    $stmt = $db->prepare("DELETE FROM pr_orders WHERE id_order = ? and id_user = ?");
+    $stmt->execute([$_POST['id_order'], $_SESSION['practice_login']]);
 } catch (PDOException $e) {
     echo('Error : ' . $e->getMessage());
     exit();

@@ -58,7 +58,7 @@
                 $message = 'Спасибо, результаты сохранены.';
             }
             if (!empty($_COOKIE['pr_order_error'])) {
-                $message = '<div class="error">Пусто.</div>';
+                $message = '<div class="error">Выберите хотя бы 1 услугу.</div>';
                 setcookie('pr_order_error', '', 100000);
             }
             if (!empty($message)) {
@@ -124,13 +124,20 @@
         <div class="ind-box">
             <h3>Удалить заказ</h3>
             <?php
+            $message = '';
             if (!empty($_COOKIE['order_del'])) {
                 setcookie('order_del', '', 100000);
                 $message = 'Заказ удален.';
             }
             if (!empty($_COOKIE['pr_order_del_error'])) {
-                $message = '<div class="error">Пусто.</div>';
-                setcookie('pr_order_del_error', '', 100000);
+                if($_COOKIE['pr_order_del_error'] = '1') {
+                    $message = '<div class="error">Введите id.</div>';
+                    setcookie('pr_order_del_error', '', 100000);
+                }
+                if($_COOKIE['pr_order_del_error'] = '2') {
+                    $message = '<div class="error">Такого id нет.</div>';
+                    setcookie('pr_order_del_error', '', 100000);
+                }
             }
             if (!empty($message)) {
                 print('<div id="messages">'.$message.'</div>');

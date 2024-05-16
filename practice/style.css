@@ -16,10 +16,19 @@
     border-radius: 15px;
     margin: 10px;
 }
-.log-box {
+.log-wrap {
     width: min-content;
-    margin: 20px auto;
-    padding: 10px;
+    margin: 10px auto;
+}
+.log-box {
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border-radius: 15px;
+}
+.login-title {
+    margin: 10px auto;
+    padding: 20px;
     background-color: #f6f6f6;
     border-radius: 15px;
 }

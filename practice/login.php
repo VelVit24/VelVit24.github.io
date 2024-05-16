@@ -33,17 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <link rel="stylesheet" href='style.css' type="text/css">
     </head>
     <body>
-
-    <div class="log-box">
-        <form action="" method="post">
-            <label>Логин<br/>
-                <input name="login"/>
-            </label><br/>
-            <label>Пароль<br/>
-                <input name="pass"/>
-            </label><br/>
-            <input type="submit" value="Войти"/>
-        </form>
+    <div class="log-wrap">
+        <div class="header">
+            <div class="login-title"><h2>Вход</h2></div>
+        </div>
+        <div class="log-box">
+            <form action="" method="post">
+                <label>Логин<br/>
+                    <input name="login"/>
+                </label><br/>
+                <label>Пароль<br/>
+                    <input name="pass"/>
+                </label><br/>
+                <input type="submit" value="Войти"/>
+            </form>
+        </div>
     </div>
     </body>
     </html>

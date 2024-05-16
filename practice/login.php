@@ -25,16 +25,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('practice_login_error', '', 100000);
     }
     ?>
+    <html>
+    <head>
+        <title>Login</title>
+        <meta charset="utf-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href='style.css' type="text/css">
+    </head>
+    <body>
 
-    <form action="" method="post">
-        <label>Логин<br/>
-            <input name="login"/>
-        </label><br/>
-        <label>Пароль<br/>
-            <input name="pass"/>
-        </label><br/>
-        <input type="submit" value="Войти"/>
-    </form>
+    <div class="log-box">
+        <form action="" method="post">
+            <label>Логин<br/>
+                <input name="login"/>
+            </label><br/>
+            <label>Пароль<br/>
+                <input name="pass"/>
+            </label><br/>
+            <input type="submit" value="Войти"/>
+        </form>
+    </div>
+    </body>
+    </html>
 
     <?php
 } // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.

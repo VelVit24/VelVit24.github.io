@@ -8,10 +8,10 @@
 <body>
 <div class="header">
     <div class="row justify-content-between">
-        <div class="col">
+        <div class="col-6">
             <h1>Фото мастерская</h1>
         </div>
-        <div class="col">
+        <div class="col-6">
             <?php if(session_start() and empty($_SESSION['practice_login'])) {?>
                 <div class="log-button">
                     <form action="login.php">

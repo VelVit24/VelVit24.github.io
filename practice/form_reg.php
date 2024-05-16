@@ -81,7 +81,7 @@ $values['date'] = empty($_COOKIE['pr_reg_date_value']) ? '' : $_COOKIE['pr_reg_d
 $fl = false;
 foreach($errors as $er) if ($er) $fl = true;
 if (!$fl && !empty($_COOKIE[session_name()]) &&
-    session_start() && !empty($_SESSION['practice_login'])) {
+     !empty($_SESSION['practice_login'])) {
     include('db_conn.php');
     $stmt = $db->prepare("SELECT * FROM pr_users WHERE id_user = ?");
     $stmt->execute([$_SESSION['practice_uid']]);

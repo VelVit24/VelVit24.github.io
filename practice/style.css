@@ -17,6 +17,7 @@
     margin: 10px;
 }
 .log-box {
+    width: min-content;
     margin: 20px auto;
     padding: 10px;
     background-color: #f6f6f6;

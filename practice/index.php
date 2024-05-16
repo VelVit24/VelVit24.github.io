@@ -147,8 +147,8 @@
         </div>
         <?php }
         if (!empty($_SESSION['practice_login'])) {
-            print('<form action="exit.php" method="POST">');
-            print('<label><input type="submit" name="act_exit" value="Выход"></label></form>');
+            print('<div class="ind-box"><form action="exit.php" method="POST">');
+            print('<label><input type="submit" name="act_exit" value="Выход"></label></form></div>');
         }
         ?>
 </div>

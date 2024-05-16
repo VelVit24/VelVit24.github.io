@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="header">
-    <h2>Фото мастерская</h2>
+    <h1>Фото мастерская</h1>
     <?php if(session_start() and empty($_SESSION['practice_login'])) {?>
     <div class="log-button">
         <form action="login.php">
@@ -62,14 +62,18 @@
             }
             ?>
             <form action="form_order_act.php" method="POST">
-                <select multiple name="order[]">
-                    <?php
-                    for($i=0;$i<count($data);$i++) {
-                        print('<option value="'.$data[$i][0].'">'.$data[$i][1].'</option>');
-                    }
-                    ?>
-                </select><br/>
-                <input type="submit" value="Сохранить" name="order_s">
+                <label>
+                    <select multiple name="order[]">
+                        <?php
+                        for($i=0;$i<count($data);$i++) {
+                            print('<option value="'.$data[$i][0].'">'.$data[$i][1].'</option>');
+                        }
+                        ?>
+                    </select>
+                </label><br/>
+                <label>
+                    <input type="submit" value="Сохранить" name="order_s">
+                </label><br/>
             </form>
         </div>
         <div class="ind-box">
@@ -81,6 +85,8 @@
             $stmt = $db->prepare('select ords.id_order, name_service, price from pr_orders ords, pr_order_price ord, pr_prices pr where ords.id_order = ord.id_order and ord.id_price = pr.id_price and ords.id_user = ?');
             $stmt->execute([$_SESSION['practice_uid']]);
             $row2 = $stmt->fetchAll();
+            if (empty($row1)) {print('<p>Заказов не найдено</p>');}
+            else {
             ?>
             <table>
                 <tr>
@@ -109,6 +115,7 @@
                 }
                 ?>
             </table>
+            <?php } ?>
         </div>
         <div class="ind-box">
             <h3>Удалить заказ</h3>
@@ -126,7 +133,7 @@
             }
             ?>
             <form action="form_order_del_act.php" method="POST">
-                <label>ID заказа
+                <label>ID заказа<br/>
                     <input name="id_order">
                 </label><br/>
                 <label>
@@ -134,12 +141,10 @@
                 </label><br/>
             </form>
         </div>
-        <div class="ind-box">
         <?php }
         if (!empty($_SESSION['practice_login'])) {
             print('<form action="exit.php" method="POST">');
-            print('<input type="submit" name="act_exit" value="Выход"></form>');
+            print('<label><input type="submit" name="act_exit" value="Выход"></label></form>');
         }
         ?>
-        </div>
 </div>

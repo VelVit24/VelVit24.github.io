@@ -233,11 +233,11 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         }
         ?>
         <form action="adm_order_date_form_act.php" method="POST">
-            <label> От
-                <input name="date1" <?php if ($errors['date']) {print 'class="error"';} ?>>
-            </label>
-            <label> до
-                <input name="date2" <?php if ($errors['date']) {print 'class="error"';} ?>>
+            <label> От <br/>
+                <input name="date1" type="date" <?php if ($errors['date']) {print 'class="error"';} ?>>
+            </label><br/>
+            <label> До <br/>
+                <input name="date2" type="date" <?php if ($errors['date']) {print 'class="error"';} ?>>
             </label><br/>
             <label>
                 <input type="submit" value="Найти">

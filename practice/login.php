@@ -34,9 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     </head>
     <body>
     <div class="log-wrap">
-        <div class="header">
+        <div class="log-title">
             <div class="login-title"><h2>Вход</h2></div>
-        </div>
         <div class="log-box">
             <form action="" method="post">
                 <label>Логин<br/>

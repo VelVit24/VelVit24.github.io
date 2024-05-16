@@ -22,15 +22,19 @@
 }
 .log-box {
     margin: 10px auto;
-    padding: 20px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 15px;
+}
+.log-title {
+    margin: 10px auto;
+    padding: 10px;
     background-color: #f6f6f6;
     border-radius: 15px;
 }
 .login-title {
     margin: 10px auto;
-    padding: 20px;
-    background-color: #f6f6f6;
-    border-radius: 15px;
+    width: min-content;
 }
 .box {
     margin: 10px 50px;

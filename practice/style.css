@@ -2,9 +2,16 @@
     background-color: #8b93ff;
     padding: 20px 60px;
 }
-
+.log-button {
+    margin: 10px 0 10px auto;
+}
 .cont {
     padding: 50px 0;
+}
+.ind-box {
+    padding: 10px;
+    background-color: #d3d3d3;
+    border-radius: 5px;
 }
 .box {
     margin: 10px 50px;

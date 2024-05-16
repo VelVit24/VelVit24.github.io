@@ -71,7 +71,8 @@ input[type=submit] {
 }
 .log-button input[type=submit] {
     width: 150px;
-    height: 100px;
+    margin: auto 0;
+    height: auto;
     font-size: 30px;
 }
 .error {

@@ -120,6 +120,8 @@ if (!empty($messages)) {
     <label>E-mail<br/>
         <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
     </label><br/>
-    <input type="submit" name="ok" value="Сохранить">
+    <label>
+        <input type="submit" name="ok" value="Сохранить">
+    </label>
 </form>
 

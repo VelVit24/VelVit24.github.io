@@ -7,14 +7,20 @@
 </head>
 <body>
 <div class="header">
-    <h1>Фото мастерская</h1>
-    <?php if(session_start() and empty($_SESSION['practice_login'])) {?>
-    <div class="log-button">
-        <form action="login.php">
-            <input type="submit" value="Вход">
-        </form>
+    <div class="row">
+        <div class="col">
+            <h1>Фото мастерская</h1>
+        </div>
+        <div class="col">
+            <?php if(session_start() and empty($_SESSION['practice_login'])) {?>
+                <div class="log-button">
+                    <form action="login.php">
+                        <input type="submit" value="Вход">
+                    </form>
+                </div>
+            <?php } ?>
+        </div>
     </div>
-    <?php } ?>
 </div>
 <div class="container">
     <div class="ind-box">

@@ -65,6 +65,7 @@ select {
     border: 2px solid grey;
     border-radius: 5px;
     padding: 5px;
+
 }
 select option {
     border-bottom: 1px solid black;

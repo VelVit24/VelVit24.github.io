@@ -60,7 +60,7 @@ input[type=radio] {
     height: 15px;
 }
 select {
-    width: 150px;
+    width: 300px;
     height: 150px;
     border: 2px solid grey;
     border-radius: 5px;

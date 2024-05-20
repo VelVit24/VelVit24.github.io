@@ -397,7 +397,7 @@ ob_start();
     </div>
 
     <div class="ind-box">
-        <h3>Изменение Исполнителей</h3>
+        <h3>Изменение исполнителей</h3>
         <?php
         $messages = array();
 

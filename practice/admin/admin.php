@@ -12,14 +12,15 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
     print('<h1>401 Требуется авторизация</h1>');
     exit();
 }
-echo ('
+ob_start();
+?>
 <html>
 <head>
     <title>Form</title>
     <meta charset="utf-8">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style.css" type="text/css">
+    <link rel="stylesheet" href='../style.css' type="text/css">
 </head>
 <body>
 <div class="container">
@@ -34,7 +35,7 @@ echo ('
                 <th>Телефон</th>
                 <th>Email</th>
             </tr>
-            ');
+            <?php
             $stmt = $db->query("SELECT * FROM pr_users");
             while ($row = $stmt->fetch()) {
                 print('<tr>');
@@ -43,12 +44,12 @@ echo ('
                 }
                 print('</tr>');
             }
-            echo('
+            ?>
         </table>
     </div>
     <div class="ind-box">
         <h3>Изменение заказчиков</h3>
-        ');
+        <?php
         $messages = array();
 
         if (!empty($_COOKIE['pr_user_save'])) {
@@ -111,25 +112,25 @@ echo ('
             }
             print('</div>');
         }
-        echo('
+        ?>
         <form action="adm_user_form_act.php" method="POST">
             <label>ID<br/>
-                <input name="id_user" <?php if ($errors["id_user"]) {print "class="error"";} ?> value="<?php print $values["id_user"]; ?>">
+                <input name="id_user" <?php if ($errors['id_user']) {print 'class="error"';} ?> value="<?php print $values['id_user']; ?>">
             </label><br/>
             <label>Фамилия<br/>
-                <input name="last_name" <?php if ($errors["last_name"]) {print "class="error"";} ?> value="<?php print $values["last_name"]; ?>">
+                <input name="last_name" <?php if ($errors['last_name']) {print 'class="error"';} ?> value="<?php print $values['last_name']; ?>">
             </label><br/>
             <label>Имя<br/>
-                <input name="first_name" <?php if ($errors["first_name"]) {print "class="error"";} ?> value="<?php print $values["first_name"]; ?>">
+                <input name="first_name" <?php if ($errors['first_name']) {print 'class="error"';} ?> value="<?php print $values['first_name']; ?>">
             </label><br/>
             <label>Дата рождения<br/>
-                <input name="date" type="date" <?php if ($errors["date"]) {print "class="error"";} ?> value="<?php print $values["date"]; ?>">
+                <input name="date" type="date" <?php if ($errors['date']) {print 'class="error"';} ?> value="<?php print $values['date']; ?>">
             </label><br/>
             <label>Телефон<br/>
-                <input name="phone" <?php if ($errors["phone"]) {print "class="error"";} ?> value="<?php print $values["phone"]; ?>">
+                <input name="phone" <?php if ($errors['phone']) {print 'class="error"';} ?> value="<?php print $values['phone']; ?>">
             </label><br/>
             <label>Email<br/>
-                <input name="email" <?php if ($errors["email"]) {print "class="error"";} ?> value="<?php print $values["email"]; ?>">
+                <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>">
             </label><br/>
             <label>
             <input type="submit" name="red" value="Изменить">
@@ -142,7 +143,7 @@ echo ('
     <div class="ind-box">
         <h3>Заказы</h3>
         <h4>Найти заказ по id заказчика</h4>
-        ');
+        <?php
         $messages = array();
         $errors = array();
         $errors['id_user'] = !empty($_COOKIE['pr_adm_order_user_error']);

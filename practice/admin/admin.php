@@ -24,7 +24,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 <body>
 <div class="container">
     <div class="ind-box">
-        <h3>Пользователи</h3>
+        <h3>Заказчики</h3>
         <table>
             <tr>
                 <th>id</th>
@@ -47,7 +47,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         </table>
     </div>
     <div class="ind-box">
-        <h3>Изменение пользователей</h3>
+        <h3>Изменение заказчиков</h3>
         <?php
         $messages = array();
 

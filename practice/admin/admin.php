@@ -64,11 +64,11 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         $errors['email'] = !empty($_COOKIE['pr_user_email_error']);
 
         if ($errors['id_user']) {
-            if ($_COOKIE['pr_id_user_user_error'] == 1)
+            if ($_COOKIE['pr_user_id_user_error'] == 1)
                 $messages[] = '<div class="error">Заполните id.</div>';
-            if ($_COOKIE['pr_id_user_user_error'] == 2)
+            if ($_COOKIE['pr_user_id_user_error'] == 2)
                 $messages[] = '<div class="error">Такого id нет.</div>';
-            setcookie('pr_id_user_user_error', '', 100000);
+            setcookie('pr_user_id_user_error', '', 100000);
         }
         if ($errors['last_name']) {
             if ($_COOKIE['pr_user_last_name_error'] == 1)

@@ -338,6 +338,11 @@ ob_start();
                 $messages[] = '<div class="error">Заполните цену.</div>';
             setcookie('pr_price_error', '', 100000);
         }
+        if (empty($errors)) {
+            setcookie('pr_id_price_value', '', 100000);
+            setcookie('pr_name_value', '', 100000);
+            setcookie('pr_price_value', '', 100000);
+        }
 
         $values = array();
         $values['id_price'] = empty($_COOKIE['pr_id_price_value']) ? '' : $_COOKIE['pr_id_price_value'];
@@ -442,12 +447,12 @@ ob_start();
         }
 
         $values = array();
-        $values['id_perf'] = empty($_COOKIE['pr_id_perf_error']) ? '' : $_COOKIE['pr_id_perf_error'];
-        $values['last_name'] = empty($_COOKIE['pr_last_name_error']) ? '' : $_COOKIE['pr_last_name_error'];
-        $values['first_name'] = empty($_COOKIE['pr_first_name_error']) ? '' : $_COOKIE['pr_first_name_error'];
-        $values['date'] = empty($_COOKIE['pr_date_error']) ? '' : $_COOKIE['pr_date_error'];
-        $values['phone'] = empty($_COOKIE['pr_phone_error']) ? '' : $_COOKIE['pr_phone_error'];
-        $values['email'] = empty($_COOKIE['pr_email_error']) ? '' : $_COOKIE['pr_email_error'];
+        $values['id_perf'] = empty($_COOKIE['pr_id_perf_value']) ? '' : $_COOKIE['pr_id_perf_value'];
+        $values['last_name'] = empty($_COOKIE['pr_last_name_value']) ? '' : $_COOKIE['pr_last_name_value'];
+        $values['first_name'] = empty($_COOKIE['pr_first_name_value']) ? '' : $_COOKIE['pr_first_name_value'];
+        $values['date'] = empty($_COOKIE['pr_date_value']) ? '' : $_COOKIE['pr_date_value'];
+        $values['phone'] = empty($_COOKIE['pr_phone_value']) ? '' : $_COOKIE['pr_phone_value'];
+        $values['email'] = empty($_COOKIE['pr_email_value']) ? '' : $_COOKIE['pr_email_value'];
         if (!empty($messages)) {
             print('<div id="messages">');
             // Выводим все сообщения.

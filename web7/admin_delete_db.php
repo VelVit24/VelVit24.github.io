@@ -24,15 +24,10 @@ if (isset($_POST['submit'])) {
         // Удаляем Cookies с признаками ошибок.
         setcookie('del_id_error', '', 100000);
     }
-    try {
-        $stmt3 = $db->prepare('DELETE FROM application WHERE id_app = ?');
-        $stmt3->execute([$_POST['del_id']]);
-        $stmt3 = $db->prepare("DELETE FROM applications_languages WHERE id_app = ?");
-        $stmt3->execute([$_POST['del_id']]);
-    } catch (PDOException $e) {
-        echo('Error : ' . $e->getMessage());
-        exit();
-    }
+    $stmt3 = $db->prepare('DELETE FROM application WHERE id_app = ?');
+    $stmt3->execute([$_POST['del_id']]);
+    $stmt3 = $db->prepare("DELETE FROM applications_languages WHERE id_app = ?");
+    $stmt3->execute([$_POST['del_id']]);
     setcookie('del_save', '1');
 }
 header('Location: admin.php');

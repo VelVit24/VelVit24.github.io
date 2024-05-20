@@ -206,22 +206,16 @@ else {
         // Сохраняем в Cookies.
         setcookie('pass', $pass, NULL, NULL, NULL, NULL, TRUE);
 
-        try {
-            $stmt = $db->prepare("INSERT INTO application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ?");
-            $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography']]);
-            $li = $db->lastInsertId();
-            foreach ($_POST['languages'] as $language) {
-                $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
-                $stmt->execute([$li, $language]);
-            }
-            $login = 'user' . $li;
-            $stmt = $db->prepare("INSERT INTO users SET login = ?, pass = ?, id_app = ?");
-            $stmt->execute([$login, md5($pass), $li]);
+        $stmt = $db->prepare("INSERT INTO application SET name = ?, phone_number = ?, email = ?, birthday = ?, gender = ?, biography = ?");
+        $stmt->execute([$_POST['name'],$_POST['phone'],$_POST['email'],$_POST['birthday'],$_POST['gender'],$_POST['biography']]);
+        $li = $db->lastInsertId();
+        foreach ($_POST['languages'] as $language) {
+            $stmt = $db->prepare("INSERT INTO applications_languages SET id_app = ?, id_lang = ?");
+            $stmt->execute([$li, $language]);
         }
-        catch(PDOException $e){
-            echo ('Error : ' . $e->getMessage());
-            exit();
-        }
+        $login = 'user' . $li;
+        $stmt = $db->prepare("INSERT INTO users SET login = ?, pass = ?, id_app = ?");
+        $stmt->execute([$login, md5($pass), $li]);
         setcookie('login', $login, NULL, NULL, NULL, NULL, TRUE);
     }
 

@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <html>
 <head>
     <title>Form</title>

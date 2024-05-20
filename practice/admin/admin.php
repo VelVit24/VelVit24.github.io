@@ -141,7 +141,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
     </div>
     <div class="ind-box">
         <h3>Заказы</h3>
-        <h4>Найти заказ по id пользователя</h4>
+        <h4>Найти заказ по id заказчика</h4>
         <?php
         $messages = array();
         $errors = array();
@@ -178,7 +178,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             $stmt->execute([$_COOKIE['pr_adm_order_user_value']]);
             $row2 = $stmt->fetchAll();
             setcookie('pr_adm_order_user_value', '', 100000);
-            if (empty($row1)) print('<div>Ничего не найдено</div>');
+            if (empty($row1)) print('<div>Заказов не найдено.</div>');
             else {
                 ?>
                 <table>
@@ -253,7 +253,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
             $row2 = $stmt->fetchAll();
             setcookie('pr_adm_order_date_value1', '', 100000);
             setcookie('pr_adm_order_date_value2', '', 100000);
-            if (empty($row1)) print('<div>Ничего не найдено</div>');
+            if (empty($row1)) print('<div>Заказов не найдено.</div>');
             else {
                 ?>
                 <table>
@@ -335,13 +335,13 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
         if ($errors['price']) {
             if ($_COOKIE['pr_price_error'] == 1)
                 $messages[] = '<div class="error">Заполните цену.</div>';
-            setcookie('pr_reg_phone_error', '', 100000);
+            setcookie('pr_price_error', '', 100000);
         }
 
         $values = array();
-        $values['id_price'] = empty($_COOKIE['pr_id_price_error']) ? '' : $_COOKIE['pr_id_price_error'];
-        $values['name'] = empty($_COOKIE['pr_name_error']) ? '' : $_COOKIE['pr_name_error'];
-        $values['price'] = empty($_COOKIE['pr_price_error']) ? '' : $_COOKIE['pr_price_error'];
+        $values['id_price'] = empty($_COOKIE['pr_id_price_value']) ? '' : $_COOKIE['pr_id_price_value'];
+        $values['name'] = empty($_COOKIE['pr_name_value']) ? '' : $_COOKIE['pr_name_value'];
+        $values['price'] = empty($_COOKIE['pr_price_value']) ? '' : $_COOKIE['pr_price_value'];
         if (!empty($messages)) {
             print('<div id="messages">');
             foreach ($messages as $message) {

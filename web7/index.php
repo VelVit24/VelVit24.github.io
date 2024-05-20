@@ -116,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['bio'] = empty($_COOKIE['bio_value1']) ? '' : $_COOKIE['bio_value1'];
 
 
+
     //подключение к БД
 
 
@@ -148,6 +149,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // предварительно санитизовав.
         //printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
     }
+    $values['name'] = htmlspecialchars($values['name']);
+    $values['phone'] = htmlspecialchars($values['phone']);
+    $values['email'] = htmlspecialchars($values['email']);
+    $values['date'] = htmlspecialchars($values['date']);
+    $values['gen'] = htmlspecialchars($values['gen']);
+    $values['lang'] = htmlspecialchars($values['lang']);
+    $values['bio'] = htmlspecialchars($values['bio']);
 
     // Включаем содержимое файла form.php.
     // В нем будут доступны переменные $messages, $errors и $values для вывода

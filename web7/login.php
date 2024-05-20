@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 else {
     include('db_conn.php');
     $stmt = $db->prepare("SELECT * FROM users WHERE login = ? AND pass = ?");
-    $stmt->execute([$_POST['login'], $_POST['pass']]);
+    $stmt->execute([$_POST['login'], md5($_POST['pass'])]);
     $row = $stmt->fetch();
     $fl = !empty($row);
 

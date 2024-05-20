@@ -50,15 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
     include('db_conn.php');
-    $stmt = $db->query("SELECT * FROM users");
-    $fl = false;
-    while ($row = $stmt->fetch()) {
-        if ($row['login'] == $_POST['login'] and $row['pass'] == md5($_POST['pass'])) {
-            $fl = true;
-            $uid = $row['id_app'];
-            break;
-        }
-    }
+    $stmt = $db->prepare("SELECT * FROM users WHERE login = ? AND pass = ?");
+    $stmt->execute([$_POST['login'], $_POST['pass']]);
+    $row = $stmt->fetch();
+    $fl = !empty($row);
 
     // Выдать сообщение об ошибках.
 
@@ -69,7 +64,7 @@ else {
         // Если все ок, то авторизуем пользователя.
         $_SESSION['login'] = $_POST['login'];
         // Записываем ID пользователя.
-        $_SESSION['uid'] = $uid;
+        $_SESSION['uid'] = $row['id_app'];
 
         // Делаем перенаправление.
         header('Location: ./');

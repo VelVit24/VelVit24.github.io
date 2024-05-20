@@ -1,7 +1,7 @@
 <?php
 $messages = array();
 if (!empty($_COOKIE['id_upd'])) {
-    $messages['id_upd'] = 'Загружены данные пользователя '.$_COOKIE['id_upd'];
+    $messages['id_upd'] = 'Загружены данные пользователя '.htmlspecialchars($_COOKIE['id_upd']);
 }
 
 $errors = array();
@@ -105,6 +105,13 @@ if (!$fl) {
     }
     $values['lang'] = $t;
 }
+$values['name'] = htmlspecialchars($values['name']);
+$values['phone'] = htmlspecialchars($values['phone']);
+$values['email'] = htmlspecialchars($values['email']);
+$values['date'] = htmlspecialchars($values['date']);
+$values['gen'] = htmlspecialchars($values['gen']);
+$values['lang'] = htmlspecialchars($values['lang']);
+$values['bio'] = htmlspecialchars($values['bio']);
 if (!empty($messages)) {
     print('<div id="messages">');
     foreach ($messages as $message) {

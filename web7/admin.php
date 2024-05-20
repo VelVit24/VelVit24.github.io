@@ -51,12 +51,12 @@ $row2 = $stmt2->fetchAll();
         print('<tr>');
 
         for($i = 0; $i < 7; $i++) {
-            print('<td>'.$row[$i].'</td>');
+            print('<td>'.htmlspecialchars($row[$i]).'</td>');
         }
         print('<td>');
         foreach ($row2 as $i) {
             if ($row['id_app'] == $i['id_app']) {
-                print($i['name_lang'].'<br/>');
+                print(htmlspecialchars($i['name_lang']).'<br/>');
             }
         }
         print('</td>');
@@ -119,7 +119,7 @@ else {
     while ($row = $stmt->fetch()) {
         print('<tr>');
         for($i = 0; $i < 2; $i++) {
-            print('<td>'.$row[$i].'</td>');
+            print('<td>'.htmlspecialchars($row[$i]).'</td>');
         }
         print('</tr>');
     }

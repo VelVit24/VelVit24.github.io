@@ -167,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     include('form.php');
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
-    // Проверяем ошибки.
+    // Проверяем токен.
     if (session_start() && !empty($_SESSION['login']) && !empty($_COOKIE[session_name()])) {
         if (!empty($_POST['csrf'])) {
             $salt = substr($_POST['csrf'],0,4);

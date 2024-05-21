@@ -172,6 +172,7 @@ else {
     $secret = $_SESSION['secret'];
     $token = $salt.':'.md5($salt.':'.$secret);
     print($token);
+    exit();
     // Проверяем ошибки.
     if (session_start() && !empty($_SESSION['login']) && !empty($_COOKIE[session_name()])) {
         if (!empty($_POST['csrf'])) {

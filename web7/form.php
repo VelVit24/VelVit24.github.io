@@ -34,7 +34,6 @@
         // и задавая начальные значения элементов ранее сохраненными.
         ?>
         <form action="" method="POST">
-            <input type="hidden" name="<?php if(!empty($_SESSION['login'])) {print('csrf');}?>" value="<?php print($_COOKIE['token']); ?>">
             <label>Ваше ФИО<br/>
                 <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>">
             </label><br/>
@@ -73,6 +72,7 @@
                 <input name="check" type="checkbox" id="cb" value="1" <?php if ($errors['check']) {print 'class="error-ch"';} ?> > С контрактом ознакомлен(а).
             </label><br/>
             <input type="submit" name="ok" value="Сохранить">
+            <input type="hidden" name="<?php if(!empty($_SESSION['login'])) {print('csrf');}?>" value="<?php empty($_COOKIE['token']) ? : print($_COOKIE['token']); ?>">
         </form>
         <?php
         if (!empty($_SESSION['login'])) {

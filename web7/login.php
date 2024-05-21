@@ -74,7 +74,7 @@ else {
         $secret = rand(100000,999999);
         $_SESSION['secret'] = $secret;
         $token = $salt.':'.md5($salt.':'.$secret);
-        Header("Authorization: Bearer " . $token);
+        setcookie('token',$token, time() + 60 * 24, null, null, null, true);
 
         // Делаем перенаправление.
         header('Location: ./');

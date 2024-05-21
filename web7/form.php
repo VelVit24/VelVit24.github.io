@@ -19,7 +19,6 @@
         ?>
         <div class="title">
             <h2>Оставить заявку для связи с нами</h2>
-
         </div>
         <?php
         if (!empty($messages)) {
@@ -29,8 +28,6 @@
                 print($message);
             }
             print('</div>');
-            var_dump($_SERVER['HTTP_AUTHORIZATION']);
-
         }
 
         // Далее выводим форму отмечая элементы с ошибками классом error

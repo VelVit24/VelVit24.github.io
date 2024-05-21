@@ -69,6 +69,11 @@ else {
         $_SESSION['login'] = $_POST['login'];
         // Записываем ID пользователя.
         $_SESSION['uid'] = $row['id_app'];
+        $salt = rand(1000,9999);
+        $secret = rand(100000,999999);
+        $_SESSION['secret'] = $secret;
+        $token = $salt.':'.md5($salt.':'.$secret);
+        setcookie('token',$token, time() + 24 * 60 * 60);
 
         // Делаем перенаправление.
         header('Location: ./');

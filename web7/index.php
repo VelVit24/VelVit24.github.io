@@ -168,6 +168,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
     // Проверяем ошибки.
+    if (session_start() && !empty($_SESSION['login']) && !empty($_COOKIE[session_name()])) {
+        if (!empty($_POST['csrf'])) {
+            $salt = substr($_POST['csrf'],0,4);
+            $secret = $_SESSION['secret'];
+            $token = $salt.':'.md5($salt.':'.$secret);
+            if ($token != $_POST['csrf']) {
+                exit();
+            }
+        }
+        else {exit();}
+    }
     include('validate.php');
 // *************
 //
@@ -191,14 +202,12 @@ else {
     }
 
     // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
-    if (!empty($_COOKIE[session_name()]) &&
-        session_start() && !empty($_SESSION['login'])) {
+    if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
         include('db_update.php');
         db_update($_SESSION['uid']);
         // кроме логина и пароля.
         //print($_SESSION['uid']);
     } else {
-        session_start();
         // Генерируем уникальный логин и пароль.
         $login = 'user';
         $pass = rand(100000, 999999);

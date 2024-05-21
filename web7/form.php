@@ -34,7 +34,7 @@
         // и задавая начальные значения элементов ранее сохраненными.
         ?>
         <form action="" method="POST">
-            <input type="hidden" name="<?php empty($_SESSION['login'])?'':'csrf';?>" value="<?php print($_COOKIE['token']);?>">
+            <input type="hidden" name="<?php if(!empty($_SESSION['login'])) {print('csrf');}?>" value="<?php print($_COOKIE['token']); ?>">
             <label>Ваше ФИО<br/>
                 <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>">
             </label><br/>

@@ -50,6 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
     include('db_conn.php');
+    if (!preg_match('/^[a-zA-z1-9\s]+$/u', $_POST['login'])) {
+        setcookie('login_error', '1', time() + 24 * 60 * 60);
+        header('Location: login.php');
+    }
     $stmt = $db->prepare("SELECT * FROM users WHERE login = ? AND pass = ?");
     $stmt->execute([$_POST['login'], md5($_POST['pass'])]);
     $row = $stmt->fetch();

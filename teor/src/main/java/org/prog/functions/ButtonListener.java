@@ -84,7 +84,7 @@ public class ButtonListener implements ActionListener {
         FileOutputStream out = null;
         boolean fl = true;
         try {
-            out = new FileOutputStream(new File("C:/Users/vel_v/OneDrive/Рабочий стол/Задания.docx"));
+            out = new FileOutputStream(new File("Задания.docx"));
         } catch (FileNotFoundException ex) {
             lb.setText("Ошибка: Файл Задание.docx открыт в другой программе.");
             fl = false;
@@ -158,7 +158,7 @@ public class ButtonListener implements ActionListener {
         out = null;
         fl = true;
         try {
-            out = new FileOutputStream(new File("C:/Users/vel_v/OneDrive/Рабочий стол/Ответы.docx"));
+            out = new FileOutputStream(new File("Ответы.docx"));
         } catch (FileNotFoundException ex) {
             lb.setText("Ошибка: Файл Ответы.docx открыт в другой программе.");
             fl = false;
@@ -172,7 +172,7 @@ public class ButtonListener implements ActionListener {
                 System.out.println(ex.getMessage());
             }
         }
-        lb.setText("Задания успешно сгенерированы и сохранены на Рабочий Стол");
+        lb.setText("Задания успешно сгенерированы и сохранены в папку с программой");
     }
     void addtext(XWPFDocument doc, String[] s) {
         for (String i : s) {

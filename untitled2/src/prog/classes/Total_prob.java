@@ -1,12 +1,14 @@
+package prog.classes;
 import java.text.DecimalFormat;
 import java.util.Random;
+import prog.classes.*;
 
 public class Total_prob {
     int []x1 = new int[3];
     double []x2 = new double[3];
     int []x3 = new int[3];
     double []x4 = new double[3];
-    Total_prob() {
+    public Total_prob() {
         Random rn = new Random();
         x1[0] = rn.nextInt(7)+3;
         x1[1] = rn.nextInt(7)+3;
@@ -21,7 +23,7 @@ public class Total_prob {
         x4[1] = (rn.nextInt(8)+1)/10.0;
         x4[2] = (rn.nextInt(8)+1)/10.0;
     }
-    String getText() {
+    public String getText() {
         String s = "Глава 3. Формула полной вероятности\n";
         s += "1. На прилавке в магазине лежат "+x1[0]+" флеш-карты с объемом памяти 2GB и "+x1[1]+" флеш-карт с объемом памяти 4GB. " +
                 "Продавец наугад взял "+x1[2]+" флеш-карты. Найти вероятность того, что все флеш-карты с объемом памяти 2GB.\n";
@@ -36,7 +38,7 @@ public class Total_prob {
                 "что оказался под рукой?\n\n";
         return s;
     }
-    String getAns() {
+    public String getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
         String s = "Глава 3\n";
         s += "1. " + df.format(Funct.comb(x1[0], x1[2])/Funct.comb(x1[0]+x1[1], x1[2]));

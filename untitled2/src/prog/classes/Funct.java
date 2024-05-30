@@ -1,3 +1,5 @@
+package prog.classes;
+import prog.classes.*;
 public class Funct {
     static long factorial(int n) {
         long fact = 1;

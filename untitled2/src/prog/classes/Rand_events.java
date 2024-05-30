@@ -1,3 +1,4 @@
+package prog.classes;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
@@ -6,7 +7,7 @@ public class Rand_events {
     double []x1 = new double[2];
     double []x2 = new double[2];
     String s1,s2,s3;
-    Rand_events(){
+    public Rand_events(){
         Random rn = new Random();
         ArrayList<String> arr = new ArrayList<>();
         arr.add("из трех событий не произошло ни одного");
@@ -24,7 +25,7 @@ public class Rand_events {
         x2[0] = (rn.nextInt(6)+2)/10.0;
         x2[1] = (rn.nextInt(6)+2)/10.0;
     }
-    String getText() {
+    public String getText() {
         String s = "Глава 2. Случайные события\n";
         s += "1. Пусть A, B, C — три события, наблюдаемые в данном эксперименте. " +
                 "Выразите в алгебре событий {A, B, C} следующее: E1 — "+s1+"; " +
@@ -39,7 +40,7 @@ public class Rand_events {
                 "Какова вероятность того, что американец на Луну не полетит (т. е. успешно пройденных туров у него окажется меньше)?\n\n";
         return s;
     }
-    String getAns() {
+    public String getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
         String s = "Глава 2\n";
         s += "2. a) " + df.format(x1[0]*x1[1]);

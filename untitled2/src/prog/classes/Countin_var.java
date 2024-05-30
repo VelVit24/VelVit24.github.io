@@ -1,3 +1,4 @@
+package prog.classes;
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -6,7 +7,7 @@ public class Countin_var {
     int []x2 = new int[2];
     double x3;
     int x4, x5;
-    Countin_var() {
+    public Countin_var() {
         Random rn = new Random();
         x1[0] = rn.nextInt(7)+1;
         x1[1] = rn.nextInt(6)+2;
@@ -23,7 +24,7 @@ public class Countin_var {
         x4 = rn.nextInt(100)+150;
         x5 = rn.nextInt(3)+2;
     }
-    String getText() {
+    public String getText() {
         String s = "Глава 6. Непрерывные случайные величины и их числовые характеристики \n";
         s += "1. Дана плотность вероятности f(x) непрерывной случайной величины X. Требуется: \n" +
                 "1) найти параметр a; \n" +
@@ -35,7 +36,7 @@ public class Countin_var {
                 " \n";
         return s;
     }
-    String getAns() {
+    public String getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
         String s = "Глава 6\n";
         s += "2. a) " + ((x2[1]-1)*Math.pow(x2[0], x2[1]-1)) + "\n";

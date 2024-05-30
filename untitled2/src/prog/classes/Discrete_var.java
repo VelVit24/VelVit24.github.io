@@ -1,3 +1,4 @@
+package prog.classes;
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -8,7 +9,7 @@ public class Discrete_var {
     double x32;
     int []x4 = new int[5];
     double []x5 = new double[4];
-    Discrete_var() {
+    public Discrete_var() {
         Random rn = new Random();
         x1[0] = (rn.nextInt(8)+1)/10.0;
         x1[1] = (rn.nextInt(8)+1)/10.0;
@@ -30,7 +31,7 @@ public class Discrete_var {
         x5[2] = (rn.nextInt(8)+1)/10.0;
         x5[3] = 1.0 - x4[3];
     }
-    String getText() {
+    public String getText() {
         String s = "Глава 5. Дискретные случайные величины\n";
         s += "1. Из двух орудий поочередно ведется стрельба по цели до первого попадания одним из орудий. Вероятность попадания в цель для первого " +
                 "орудия равна "+x1[0]+", для второго — "+x1[1]+". Начинает стрельбу первое орудие. Составить ряд распределения дискретной случайной величины " +
@@ -46,7 +47,7 @@ public class Discrete_var {
                 "P |  p | "+x5[0]+" | "+x5[1]+"    P | "+x5[0]+" | "+x5[1]+"\n\n";
         return s;
     }
-    String getAns() {
+    public String getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
         String s = "Глава 5\n";
         double t1 = 1-x1[0]*x1[1], t2 = x1[0]*x1[1];

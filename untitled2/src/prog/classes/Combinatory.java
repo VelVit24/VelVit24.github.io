@@ -1,10 +1,11 @@
+package prog.classes;
 import java.math.BigInteger;
 import java.util.Random;
 
 public class Combinatory {
     private int []x1 = new int[2];
     private int []x2 = new int[6];
-    Combinatory(){
+    public Combinatory(){
         Random rn = new Random();
         x1[0] = rn.nextInt(5)+5;
         x1[1] = rn.nextInt(x1[0]-3)+2;
@@ -15,7 +16,7 @@ public class Combinatory {
         x2[4] = x2[3] - (rn.nextInt(2)+1);
         x2[5] = x2[3] - (rn.nextInt(2)+1);
     }
-    String getText() {
+    public String getText() {
         String s = "Глава 1. Комбинаторика\n";
         s += "1. У " + x1[0] + " спортсменов кроссовки разных размеров. " +
                 "После душа в темной раздевалке каждый выбрал себе кроссовки наугад. " +
@@ -27,7 +28,7 @@ public class Combinatory {
                 "б) студент выберет "+x2[5]+" справочника по математике, а нужная информация будет в одном из них.\n\n";
         return s;
     }
-    String getAns() {
+    public String getAns() {
         String s = "";
         s += "Глава 1\n";
         s += "1. a) 1/" + Funct.factorial(x1[0]);

@@ -1,3 +1,4 @@
+package prog.classes;
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -6,7 +7,7 @@ public class Bernoulli {
     int []x2 = new int[3];
     double x3;
     int x4, x5;
-    Bernoulli() {
+    public Bernoulli() {
         Random rn = new Random();
         x1[0] = rn.nextInt(16)+4;
         x1[1] = rn.nextInt(16)+4;
@@ -20,7 +21,7 @@ public class Bernoulli {
         x3 = (rn.nextInt(8)+1)/1000.0;
         x4 = rn.nextInt(100)+150;
     }
-    String getText() {
+    public String getText() {
         String s = "Глава 4. Схема Бернулли\n";
         s += "1. В каждом из "+x1[2]+" ящиков по "+x1[0]+" белых и по "+x1[1]+" черных шаров. Из каждого ящика вынули по одному шару. " +
                 "Какова вероятность вынуть "+x1[3]+" белых и "+(x1[2]-x1[3])+" черных шара?\n";
@@ -31,7 +32,7 @@ public class Bernoulli {
                 "что среди "+x4+" соединений произойдет менее трех неправильных.\n\n";
         return s;
     }
-    String getAns() {
+    public String getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
         String s = "Глава 4\n";
         double p = ((double)x1[0])/((double)x1[0]+x1[1]);

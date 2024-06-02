@@ -38,7 +38,7 @@ public class Distrib {
         DecimalFormat df = new DecimalFormat("0.000");
         String[] s = new String[4];
         s[0] = "17. M(T) = " + (1.0/x11);
-        s[1] = "     P(T>"+x12+") = " + Math.exp(-x11/x12);
+        s[1] = "     P(T>"+x12+") = " + Math.exp(-x11*x12);
         s[2] = "18. " + df.format(Funct.laplace(1) - Funct.laplace((double) (x2[2] - x2[0]) /x2[1]));
         s[3] = "19. " + df.format(Funct.laplace((double) (x3[2] - x3[0]) /x3[1]) - Funct.laplace((double) (-x3[0]) /x3[1]));
         return s;

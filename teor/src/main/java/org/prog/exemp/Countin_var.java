@@ -1,6 +1,7 @@
 package org.prog.exemp;
 import java.text.DecimalFormat;
 import java.util.Random;
+import org.prog.functions.Funct;
 
 public class Countin_var {
     int []x1 = new int[7];
@@ -38,7 +39,7 @@ public class Countin_var {
     public String[] getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
         String[] s = new String[1];
-        s[0] = "16. a) " + ((x2[1]-1)*Math.pow(x2[0], x2[1]-1)) + "\n";
+        s[0] = "16. a) " + ((int)Funct.countinInterg(x2[0],x2[1])+1) + "\n";
         return s;
     }
 }

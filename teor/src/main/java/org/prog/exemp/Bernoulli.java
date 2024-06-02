@@ -43,11 +43,11 @@ public class Bernoulli {
         double[] t1 = {(double) 3 /36, (double) 4 /36, (double) 5 /36, (double) 6 /36, (double) 5 /36, (double) 4 /36, (double) 3 /36};
         double p2 = t1[x2[1]-4];
         double x = (x2[2]-x2[0]*p2)/Math.sqrt(x2[0]*p2*(1-p2));
-        s[1] = "10. a) " + df.format((1.0/Math.sqrt(x2[0]*p2*(1-p2)))*Funct.laplacePR(x));
+        s[1] = "10. a) " + (df.format((1.0/Math.sqrt(x2[0]*p2*(1-p2)))*Funct.laplacePR(x)+0.005));
         double xx1 = (x2[2]-x2[0]*p2)/Math.sqrt(x2[0]*p2*(1-p2));
         double xx2 = (x2[0]-x2[0]*p2)/Math.sqrt(x2[0]*p2*(1-p2));
         double np = x3*x4;
-        s[2] = "      b) " + df.format(Funct.laplace(xx2) - Funct.laplace(xx1));
+        s[2] = "      b) " + (df.format(Funct.laplace(xx2) - Funct.laplace(xx1)+0.005));
         s[3] = "11. " + df.format(Math.exp(-np) + np*Math.exp(-np) + np*np*Math.exp(-np));
         return s;
     }

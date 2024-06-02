@@ -31,7 +31,7 @@ public class Discrete_var {
         x5[0] = (rn.nextInt(5)+1)/10.0;
         x5[1] = (rn.nextInt(3)+1)/10.0;
         x5[2] = (rn.nextInt(8)+1)/10.0;
-        x5[3] = 1.0 - x4[3];
+        x5[3] = 1.0 - x5[2];
     }
     public String[] getText() {
         String[] s = new String[9];
@@ -51,6 +51,7 @@ public class Discrete_var {
     }
     public String[] getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df2 = new DecimalFormat("0.00");
         String[] s = new String[12];
         double t1 = 1-x1[0]*x1[1], t2 = x1[0]*x1[1];
         s[0] = "12. M(X) = " + df.format(1.0/t1);
@@ -79,10 +80,10 @@ public class Discrete_var {
         for (int i = 0; i < x2[1]+1; i++) {
             s[4] += " | " + df.format(p[i]);
         }
-        s[5] = "    M(X) = " + mx;
-        s[6] = "    D(X) = " + dx;
+        s[5] = "    M(X) = " + df2.format(mx);
+        s[6] = "    D(X) = " + df2.format(dx);
 
-        s[7] = "14. M(X) = " + df.format(x31*x32);
+        s[7] = "14. M(X) = " + df2.format(x31*x32);
 
         double x5p = 1 - x5[0] - x5[1];
         mx = x4[0]*x5p + x4[1]*x5[0] + x4[2]*x5[1];
@@ -91,10 +92,10 @@ public class Discrete_var {
         double my2 = x4[3]*x4[3]*x5[2] + x4[4]*x4[4]*x5[3];
         dx = mx2 - mx*mx;
         double dy = my2 - my*my;
-        s[8] = "15. M(X) " + mx;
-        s[9] = "     M(Y) " + my;
-        s[10] = "    D(X) " + dx;
-        s[11] = "    D(Y) " + dy;
+        s[8] = "15. M(X) " + df2.format(mx);
+        s[9] = "     M(Y) " + df2.format(my);
+        s[10] = "    D(X) " + df2.format(dx);
+        s[11] = "    D(Y) " + df2.format(dy);
         return s;
     }
 }

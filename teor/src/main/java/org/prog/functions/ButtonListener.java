@@ -22,9 +22,18 @@ public class ButtonListener implements ActionListener {
         lb.setText("");
 
         XWPFDocument document = new XWPFDocument();
+        XWPFDocument document1 = new XWPFDocument();
 
         int n = (int) sp.getValue();
+
         for (int i = 0; i < n; i++) {
+            Combinatory cb = new Combinatory();
+            Rand_events re = new Rand_events();
+            Total_prob tp = new Total_prob();
+            Bernoulli ber = new Bernoulli();
+            Discrete_var dv = new Discrete_var();
+            Countin_var cv = new Countin_var();
+            Distrib db = new Distrib();
 
             XWPFParagraph title = document.createParagraph();
             title.setAlignment(ParagraphAlignment.CENTER);
@@ -36,48 +45,85 @@ public class ButtonListener implements ActionListener {
 
             String[] s1;
             if (ch[0] == 1) {
-                Combinatory cb = new Combinatory();
                 s1 = cb.getText();
                 addtext(document, s1);
             }
 
             if (ch[1] == 1) {
-                Rand_events re = new Rand_events();
                 s1 = re.getText();
                 addtext(document, s1);
             }
 
             if (ch[2] == 1) {
-                Total_prob tp = new Total_prob();
                 s1 = tp.getText();
                 addtext(document, s1);
             }
 
             if (ch[3] == 1) {
-                Bernoulli ber = new Bernoulli();
                 s1 = ber.getText();
                 addtext(document, s1);
             }
 
             if (ch[4] == 1) {
-                Discrete_var dv = new Discrete_var();
                 s1 = dv.getText();
                 addtext(document, s1);
             }
 
             if (ch[5] == 1) {
-                Countin_var cv = new Countin_var();
                 s1 = cv.getText();
                 addtext(document, s1);
             }
 
             if (ch[6] == 1) {
-                Distrib db = new Distrib();
                 s1 = db.getText();
                 addtext(document, s1);
             }
 
             title.setPageBreak(true);
+
+            XWPFParagraph title1 = document1.createParagraph();
+            title1.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun titleRun1 = title1.createRun();
+            titleRun1.setText("Вариант " + (i+1));
+            titleRun1.setBold(true);
+            titleRun1.setFontFamily("Times New Roman");
+            titleRun1.setFontSize(20);
+
+            if (ch[0] == 1) {
+                s1 = cb.getAns();
+                addtext(document1, s1);
+            }
+
+            if (ch[1] == 1) {
+                s1 = re.getAns();
+                addtext(document1, s1);
+            }
+
+            if (ch[2] == 1) {
+                s1 = tp.getAns();
+                addtext(document1, s1);
+            }
+
+            if (ch[3] == 1) {
+                s1 = ber.getAns();
+                addtext(document1, s1);
+            }
+
+            if (ch[4] == 1) {
+                s1 = dv.getAns();
+                addtext(document1, s1);
+            }
+
+            if (ch[5] == 1) {
+                s1 = cv.getAns();
+                addtext(document1, s1);
+            }
+
+            if (ch[6] == 1) {
+                s1 = db.getAns();
+                addtext(document1, s1);
+            }
+            title1.setPageBreak(true);
         }
 
 
@@ -99,62 +145,6 @@ public class ButtonListener implements ActionListener {
             }
         }
 
-        document = new XWPFDocument();
-        for (int i = 0; i < n; i++) {
-            XWPFParagraph title = document.createParagraph();
-            title.setAlignment(ParagraphAlignment.CENTER);
-            XWPFRun titleRun = title.createRun();
-            titleRun.setText("Вариант " + (i+1));
-            titleRun.setBold(true);
-            titleRun.setFontFamily("Times New Roman");
-            titleRun.setFontSize(20);
-
-            String[] s1;
-            if (ch[0] == 1) {
-                Combinatory cb = new Combinatory();
-                s1 = cb.getAns();
-                addtext(document, s1);
-            }
-
-            if (ch[1] == 1) {
-                Rand_events re = new Rand_events();
-                s1 = re.getAns();
-                addtext(document, s1);
-            }
-
-            if (ch[2] == 1) {
-                Total_prob tp = new Total_prob();
-                s1 = tp.getAns();
-                addtext(document, s1);
-            }
-
-            if (ch[3] == 1) {
-                Bernoulli ber = new Bernoulli();
-                s1 = ber.getAns();
-                addtext(document, s1);
-            }
-
-            if (ch[4] == 1) {
-                Discrete_var dv = new Discrete_var();
-                s1 = dv.getAns();
-                addtext(document, s1);
-            }
-
-            if (ch[5] == 1) {
-                Countin_var cv = new Countin_var();
-                s1 = cv.getAns();
-                addtext(document, s1);
-            }
-
-            if (ch[6] == 1) {
-                Distrib ds = new Distrib();
-                s1 = ds.getAns();
-                addtext(document, s1);
-            }
-            title.setPageBreak(true);
-        }
-
-
         out = null;
         fl = true;
         try {
@@ -165,9 +155,9 @@ public class ButtonListener implements ActionListener {
         }
         if (fl) {
             try {
-                document.write(out);
+                document1.write(out);
                 out.close();
-                document.close();
+                document1.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }

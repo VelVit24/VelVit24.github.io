@@ -39,7 +39,11 @@ public class Countin_var {
     public String[] getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
         String[] s = new String[1];
-        s[0] = "16. a) " + ((int)Funct.countinInterg(x2[0],x2[1])+1) + "\n";
+        double x = Funct.countinInterg(x2[0],x2[1]);
+        int a;
+        if (x > (((int)x)+0.5)) a = (int)x + 1;
+        else a = (int)x;
+        s[0] = "16. a) " + a + "\n";
         return s;
     }
 }

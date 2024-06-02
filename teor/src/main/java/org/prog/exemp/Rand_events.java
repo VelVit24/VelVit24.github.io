@@ -60,13 +60,15 @@ public class Rand_events {
     }
     public String[] getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
-        String[] s = new String[3];
-        s[0] = "3. a) " + a1 + "; b) " + a2 + "; c) " + a3;
-        s[1] = "4. a) " + df.format(x1[0]*x1[1]) + "; b) " + df.format(x1[0]*(1-x1[1])) + "; c) " + df.format(1-(x1[0]+x1[1]-x1[0]*x1[1]));
-        double y1 = (1-x2[1])*(1-x2[1])*(1-x2[1])*(x2[0]*(1-x2[1])*(1-x2[1])*3 + x2[0]*x2[0]*(1-x2[1])*3 + x2[0]*x2[0]*x2[0]);
-        double y2 = x2[1]*(1-x2[1])*(1-x2[1])*3*(x2[0]*x2[0]*(1-x2[1])*3 + x2[0]*x2[0]*x2[0]);
+        String[] s = new String[5];
+        s[0] = "3. a) " + a1 + ";";
+        s[1] = "     b) " + a2 + ";";
+        s[2] = "     c) " + a3;
+        s[3] = "4. a) " + df.format(x1[0]*x1[1]) + "; b) " + df.format(x1[0]*(1-x1[1])) + "; c) " + df.format(1-(x1[0]+x1[1]-x1[0]*x1[1]));
+        double y1 = (1-x2[1])*(1-x2[1])*(1-x2[1])*(x2[0]*(1-x2[0])*(1-x2[0])*3 + x2[0]*x2[0]*(1-x2[0])*3 + x2[0]*x2[0]*x2[0]);
+        double y2 = x2[1]*(1-x2[1])*(1-x2[1])*3*(x2[0]*x2[0]*(1-x2[0])*3 + x2[0]*x2[0]*x2[0]);
         double y3 = x2[1]*x2[1]*(1-x2[1])*3*x2[0]*x2[0]*x2[0];
-        s[2] = "5. " + df.format(y1+y2+y3) + "\n";
+        s[4] = "5. " + df.format(y1+y2+y3) + "\n";
         return s;
     }
 }

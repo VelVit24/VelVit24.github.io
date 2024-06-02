@@ -42,12 +42,26 @@ public class Total_prob {
     }
     public String[] getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
-        String[] s = new String[3];
-        s[0] = "6. " + df.format(Funct.comb(x1[0], x1[2])/Funct.comb(x1[0]+x1[1], x1[2]));
-        s[1] = "7. " + df.format((0.3333333)*x2[0]+(0.3333333)*x2[1]+(0.3333333)*x2[2]);
-        double t = (1.0/x3[0])*x4[0] + (1.0/x3[1])*x4[1] + (1.0/x3[2])*x4[2];
-        double t1 = ((1.0/x3[0])*x4[0])/t, t2 = ((1.0/x3[1])*x4[1])/t, t3 = ((1.0/x3[2])*x4[2])/t;
-        s[2] = "8. "+df.format(t1)+", "+df.format(t2)+", "+df.format(t3);
+        String[] s = new String[4];
+        double p = 1;
+        for (int i = 0; i < x1[2]; i++) {
+            p *= ((double) (x1[0] - i) /(x1[0]+x1[1]-i));
+        }
+        s[0] = "6. " + df.format(p);
+        s[1] = "7. " + df.format((3-x2[0]-x2[1]-x2[2])/3);
+        double t = (x3[0]/100.0)*x4[0] + (x3[1]/100.0)*x4[1] + (x3[2]/100.0)*x4[2];
+        double t1 = ((x3[0]/100.0)*x4[0])/t, t2 = ((x3[1]/100.0)*x4[1])/t, t3 = ((x3[2]/100.0)*x4[2])/t;
+        String ans;
+        if (t1>t2) {
+            if (t1>t3) ans = "цемент";
+            else ans = "пластмасса";
+        }
+        else {
+            if (t2>t3) ans = "амальгама";
+            else ans = "пластмасса";
+        }
+        s[2] = "8. Цемент: "+df.format(t1)+", амальгама: "+df.format(t2)+", пластмасса: "+df.format(t3);
+        s[3] = "     Вероятнее всего: " + ans;
         return s;
     }
 }

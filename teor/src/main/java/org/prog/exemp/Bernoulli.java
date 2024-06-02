@@ -18,7 +18,7 @@ public class Bernoulli {
 
         x2[0] = rn.nextInt(30)+35;
         x2[1] = rn.nextInt(6)+4;
-        x2[2] = rn.nextInt(8)+8;
+        x2[2] = rn.nextInt(6)+6;
 
         x3 = (rn.nextInt(8)+1)/1000.0;
         x4 = rn.nextInt(100)+150;
@@ -36,19 +36,22 @@ public class Bernoulli {
     }
     public String[] getAns() {
         DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df2 = new DecimalFormat("0.0000");
         String[]s = new String[4];
         double p = ((double)x1[0])/((double)x1[0]+x1[1]);
         double t = Funct.comb(x1[2], x1[3]) * Math.pow(p,x1[3]) * Math.pow(1-p,x1[2]-x1[3]);
         s[0] = "9. " + df.format(t);
-        double[] t1 = {(double) 3 /36, (double) 4 /36, (double) 5 /36, (double) 6 /36, (double) 5 /36, (double) 4 /36, (double) 3 /36};
+
+        double[] t1 = {3.0 /36, 4.0 /36, 5.0 /36, 6.0 /36, 5.0 /36, 4.0 /36, 3.0 /36};
         double p2 = t1[x2[1]-4];
         double x = (x2[2]-x2[0]*p2)/Math.sqrt(x2[0]*p2*(1-p2));
-        s[1] = "10. a) " + (df.format((1.0/Math.sqrt(x2[0]*p2*(1-p2)))*Funct.laplacePR(x)+0.005));
+        s[1] = "10. a) " + (df2.format((1.0/Math.sqrt(x2[0]*p2*(1-p2)))*Funct.laplacePR(x)));
         double xx1 = (x2[2]-x2[0]*p2)/Math.sqrt(x2[0]*p2*(1-p2));
         double xx2 = (x2[0]-x2[0]*p2)/Math.sqrt(x2[0]*p2*(1-p2));
         double np = x3*x4;
-        s[2] = "      b) " + (df.format(Funct.laplace(xx2) - Funct.laplace(xx1)+0.005));
-        s[3] = "11. " + df.format(Math.exp(-np) + np*Math.exp(-np) + np*np*Math.exp(-np));
+        s[2] = "      b) " + (df2.format(Funct.laplace(xx2) - Funct.laplace(xx1)));
+
+        s[3] = "11. " + df.format(Math.exp(-np) + np*Math.exp(-np) + np*np*Math.exp(-np)/2.0);
         return s;
     }
 }

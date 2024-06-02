@@ -115,6 +115,12 @@ public class Main {
         f.setLayout(null);
         f.setVisible(true);
 
-        System.out.println(Funct.comb(3,2)/Funct.comb(12,2));
+
+        int[] x1 = {4,5,3};
+        double p = 1;
+        for (int i = 0; i < x1[2]; i++) {
+            p *= ((double) (x1[0] - i) /(x1[0]+x1[1]-i));
+        }
+        System.out.println(Funct.countinInterg(4,2));
     }
 }
